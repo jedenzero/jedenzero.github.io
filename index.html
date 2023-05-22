@@ -32,12 +32,9 @@
 		color:white;
 		align-items:center;
 	}
-	nav ul{
-		margin-left:0;
-		padding-left:0;
-	}
-	nav li{
-		list-style-type:none;
+	.container{
+		display:flex;
+		justify-content:space-between;
 	}
 	main{
 		padding-top:0;
@@ -45,9 +42,11 @@
 </style>
 <body>
 <nav>
-	<ul>
-		<li>첫 번째 항목</li><li>두 번째 항목</li>
-	</ul>
+	<div class="container">
+		<div>first</div>
+		<div>second</div>
+		<div>third</div>
+	</div>
 </nav>
 <main>
 <p>이것은 <strong>한글</strong>로 작성된 문장이다.</p>
