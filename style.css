@@ -1,0 +1,10 @@
+body{
+		font-family:"Mulish", "Noto Sans KR";
+		background-color:#F0FFFF;
+		color:#001428;
+		margin:0;
+	}
+	a{
+		color:#1E64FF;
+		text-decoration:none;
+	}
