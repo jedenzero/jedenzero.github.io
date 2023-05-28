@@ -8,13 +8,15 @@
 </head>
 <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@300;700&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <style>
 	body{
 		font-family:"Mulish", "Noto Sans KR";
 		background-color:#F0FFFF;
 		color:#001428;
 		margin:0;
-		font-size:0.8rem;
 	}
 	a{
 		color:#1E64FF;
@@ -26,44 +28,44 @@
 		color:#000000;
 		text-align:center;
 	}
-	nav{
-		position:sticky;
-		top:0;
-		left:0;
-		right:0;
-		margin:0;
-		padding:0;
-		height:30px;
-		background-color:#005078;
-		color:white;
-	}
-	.container{
-		display:flex;
-		align-items:center;
-		justify-content:space-evenly;
-		margin:0;
-		border:0;
-		padding:0;
-	}
-	main{
-		padding-top:0;
-		padding-left:30px;
-	}
 </style>
 <body>
-<up>
-	<h1>Ygona</h1>
-</up>
-<nav>
-	<div class="container">
-		<div>first</div>
-		<div>second</div>
-		<div>third</div>
-	</div>
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="#">WebSiteName</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Home</a></li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Page 1 <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Page 1-1</a></li>
+            <li><a href="#">Page 1-2</a></li>
+            <li><a href="#">Page 1-3</a></li>
+          </ul>
+        </li>
+        <li><a href="#">Page 2</a></li>
+        <li><a href="#">Page 3</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+      </ul>
+    </div>
+  </div>
 </nav>
-<main>
-<p>이것은 <strong>한글</strong>로 작성된 문장이다.</p>
-<p>This is a sentence written in <strong>English</strong>.</p>
-</main>
+  
+<div class="container">
+  <h3>ㅎㅎㅎ</h3>
+	<p>ㄹㅇㄴㄹㅇ</p>
+</div>
+
 </body>
 </html>
