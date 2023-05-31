@@ -3,6 +3,10 @@ body{
 	background-color:#F0FFFF;
 	color:#001428;
 	margin:0;
+    padding:0;
+}
+.container{
+    padding:30px;
 }
 a{
 	text-decoration:none;
