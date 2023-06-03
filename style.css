@@ -11,7 +11,3 @@ body{
 a{
 	text-decoration:none;
 }
-img{
-    border-radius:20%; !important
-    filter:drop-shadow(5px 5px 20px 0px #30303080);
-}
