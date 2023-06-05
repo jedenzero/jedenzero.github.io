@@ -14,5 +14,6 @@ a{
 .quote{
 	width:80%;
 	background-color:#F8FCFF;
+	border:1px solid #D9DDDF;
 	border-radius:20px;
 }
