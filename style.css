@@ -12,8 +12,10 @@ a{
 	text-decoration:none;
 }
 .quote{
-	width:80%;
+	max-width:80%;
 	background-color:#F8FCFF;
 	border:1px solid #D9DDDF;
 	border-radius:20px;
+	box-sizing:border-box;
+	padding:25px;
 }
