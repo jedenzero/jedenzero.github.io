@@ -11,6 +11,9 @@ body{
 a{
 	text-decoration:none;
 }
+b{
+	font-weight:500;
+}
 .quote{
 	max-width:500px;
 	background-color:#FFFFFF;
