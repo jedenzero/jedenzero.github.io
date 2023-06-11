@@ -1,18 +1,16 @@
 body{
 	font-family:"Mulish", "Noto Sans KR";
+	font-weight:500;
 	background-color:#FFFFFF;
 	color:#001428;
 	margin:0;
-    padding:0;
+  padding:0;
 }
 .container{
     padding:30px;
 }
 a{
 	text-decoration:none;
-}
-p{
-	font-weight:300;
 }
 b{
 	font-weight:500;
