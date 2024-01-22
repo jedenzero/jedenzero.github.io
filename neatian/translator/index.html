@@ -9,14 +9,38 @@
     <script type="text/javascript" src="gflib.js"></script>
     <script type="text/javascript" src="translator.js"></script>
     <script type="text/javascript" src="grammar.js"></script>
+    <script>
+     var grammar = Foods;
+
+     function updateTranslation () {
+        var input = document.getElementById('inputText').value;
+        var fromLang = document.getElementById('fromLang').value;
+        var toLang = document.getElementById('toLang').value;
+        var output = document.getElementById('output');
+        var translation = grammar.translate(input, fromLang, toLang);
+        removeChildren(output);
+        output.appendChild(formatTranslation(translation));
+      }
+
+      function populateLangs () {
+        var f = document.getElementById('fromLang');
+        var t = document.getElementById('toLang');
+        for (var c in grammar.concretes) {
+          addOption(f, c, c);
+          addOption(t, c, c);
+        }
+      }
+    </script>
   </head>
-  <body>
+  <body onload="populateLangs(grammar, 'fromLang', 'toLang')">
     <div class="header">
       <a style="margin-left:20px;color:#1D2F52;font-size:15px;" href="https://jedenzero.github.io/neatian/">NEĂTĂK</a>
     </div>
     <div class="contain">
-    <h2 style="text-align:center;">0. 네어트어란</h2>
-    <p></p>
-    <div>
+    <h2 style="text-align:center;">네어트어 번역기(미완성)</h2>
+    <input type="text" name="inputText" id="inputText" value="this cheese is warm" size="50">
+    <input type="button" value="번역" onclick="updateTranslation()">
+    <div id="output"></div>
+    </div>
   </body>
 </html>
