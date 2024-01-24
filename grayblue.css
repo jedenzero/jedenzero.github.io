@@ -10,9 +10,6 @@ body{
      word-break:keep-all;
      line-height:150%;
 }
-table{
-     color:#374052;
-}
 .header{
      position:sticky;
      top:0;
@@ -48,4 +45,7 @@ a,p{
 }
 a{
      text-decoration:none;
+}
+table{
+     color:#374052;
 }
