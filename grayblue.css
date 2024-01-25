@@ -49,3 +49,8 @@ a{
 table{
      color:#374052;
 }
+blockquote{
+     margin-left:10px;
+     padding-left:10px;
+     border-left:2px solid #1D2F52;
+}
