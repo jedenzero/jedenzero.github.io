@@ -33,6 +33,9 @@ body{
      padding-right:5px;
      font-size:10px;
 }
+summary::-webkit-details-marker{
+	display:none;
+}
 h2,h3{
      color:#1D2F52;
 }
