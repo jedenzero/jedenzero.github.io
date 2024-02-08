@@ -54,3 +54,6 @@ blockquote{
      padding-left:10px;
      border-left:2px solid #1D2F52;
 }
+img{
+     image-rendering:crisp-edges;
+}
