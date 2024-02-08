@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Created with Vectornator (http://vectornator.io/) -->
+<svg height="100%" stroke-miterlimit="10" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1" viewBox="0 0 3000 2000" width="100%" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:vectornator="http://vectornator.io" xmlns:xlink="http://www.w3.org/1999/xlink">
+<defs>
+<path d="M1500 500L1000 1366.03L2000 1366.03L1500 500Z" id="Fill"/>
+</defs>
+<clipPath id="ArtboardFrame">
+<rect height="2000" width="3000" x="0" y="0"/>
+</clipPath>
+<g clip-path="url(#ArtboardFrame)" id="레이어-1" vectornator:layerName="레이어 1">
+<path d="M400 1.7053e-13L2600 1.7053e-13C2820.91 1.7053e-13 3000 179.086 3000 400L3000 1600C3000 1820.91 2820.91 2000 2600 2000L400 2000C179.086 2000-1.13687e-13 1820.91-1.13687e-13 1600L-1.13687e-13 400C-1.13687e-13 179.086 179.086 1.7053e-13 400 1.7053e-13Z" fill="#fafafa" fill-rule="nonzero" opacity="1" stroke="none"/>
+<g opacity="1">
+<mask height="1066.03" id="StrokeMask" maskUnits="userSpaceOnUse" width="1200" x="900" y="400">
+<rect fill="#ffffff" height="1066.03" stroke="none" width="1200" x="900" y="400"/>
+<use fill="#000000" fill-rule="evenodd" stroke="none" xlink:href="#Fill"/>
+</mask>
+<use fill="none" mask="url(#StrokeMask)" stroke="#3374ff" stroke-linecap="butt" stroke-linejoin="round" stroke-width="200" xlink:href="#Fill"/>
+</g>
+</g>
+</svg>
