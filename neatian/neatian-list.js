@@ -7,5 +7,6 @@ var list=[
     {type:"wr", detail:"개발 과정", title:"초기 네어트어 구상"},
     {type:"ls", title:"1. 동사와 부정"},
     {type:"ls", title:"2. 조사"},
-    {type:"ls", title:"3. 형용사화"}
+    {type:"ls", title:"3. 형용사화"},
+    {type:"tl", title:"사전"}
 ]
