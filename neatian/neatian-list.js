@@ -8,5 +8,5 @@ var list=[
     {type:"ls", title:"1. 동사와 부정"},
     {type:"ls", title:"2. 조사"},
     {type:"ls", title:"3. 형용사화"},
-    {type:"tl", title:"사전"}
+    {type:"tl", title:"네어트어 사전"}
 ]
