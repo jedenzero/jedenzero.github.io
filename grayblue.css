@@ -45,6 +45,7 @@ body{
      text-align:center;
 }
 #search{
+      width:180px;
       border:none;
       outline:none;
       text-align:center;
