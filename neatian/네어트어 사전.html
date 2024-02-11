@@ -22,37 +22,31 @@
     const input = document.getElementById('search');
     const resultDiv = document.getElementById('output');
     
-    function cut(array){
-      return array.map(row => row[0]);
-    }
-    
     function search() {
       const keyword = input.value;
 
       fetch('https://sheets.googleapis.com/v4/spreadsheets/13LICoyhYt4Do9R24ktfoDpSDFxhHKpO-r44P3ROTJZQ/values/ne!A:C?key=AIzaSyATLeHQh6kM0LWRJjLg8CmzoSdnntFrmFk')
       .then(response => response.json())
       .then(data => {
-        const words = cut(data.values);
-        const matchedWords = words.filter(word => word.includes(keyword));
+        let Match = data.values.filter(row=>row[0].includes(keyword));
+        let exactMatch = data.values.filter(row=>row[0]===(keyword));
+        let startMatch = data.values.filter(row=>row[0].startsWith(keyword)&&row[0]!==keyword);
+        let otherMatch = data.values.filter(row=>!exactMatch.includes(row)&&!startMatch.includes(row));
 
         output.innerHTML = '';
         
-        while (matchedWords.indexOf(keyword)>-1){
-            const index = matchedWords.indexOf(keyword);
-            const div = document.createElement('div');
-            div.className='word';
-            div.innerHTML += '<h2>'+keyword+'</h2>';
-            div.innerHTML += '<p>'+data.values[index][2]+'</p>';
-            output.appendChild(div);
-            matchedWords.splice(matchedWords.indexOf(keyword),1);
-            data.values.splice(matchedWords.indexOf(keyword),1);
-        }
-        matchedWords.forEach(word => {
-            const div = document.createElement('div');
-            div.className='word';
-            div.innerHTML += '<h2>'+keyword+'</h2>';
-            output.appendChild(div);
-        });
+        exactMatch.forEach((row, index)=>createWordElement(index+1,row));
+        startMatch.forEach ((row, index)=>createWordElement(index+1+exactMatch.length,row));
+        otherMatch.forEach((row, index)=>createWordElement(index+1+exactMatch.length+startMatch.length,row);
+        
+        function createWordElement(id,data) {
+          const div=document.createElement('div');
+          div.className='word';
+          div.innerHTML+='<sup>'+id+'</sup>'+'<h2 style="display:inline-block;">'+data[0]+'</h2>';
+          div.innerHTML+='<p>('+data[1]+') ';
+          div.innerHTML+=data[2]+'</p>';
+          output.appendChild (div);
+         }
       })
       .catch(error => console.error('Error:', error));
     };
