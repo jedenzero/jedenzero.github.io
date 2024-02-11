@@ -6,7 +6,6 @@
 	  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	  <title>네어트어</title>
       <link rel="stylesheet" href="../grayblue.css">
-      <script src="https://unpkg.com/neo4j-driver"></script>
   </head>
   <body>
     <div class="header">
@@ -21,7 +20,7 @@
     const input = document.getElementById('search');
     const resultDiv = document.getElementById('output');
 
-    search() {
+    function search() {
       const keyword = input.value;
 
       fetch('https://sheets.googleapis.com/v4/spreadsheets/13LICoyhYt4Do9R24ktfoDpSDFxhHKpO-r44P3ROTJZQ/values/ne!A:A?key=AIzaSyATLeHQh6kM0LWRJjLg8CmzoSdnntFrmFk')
