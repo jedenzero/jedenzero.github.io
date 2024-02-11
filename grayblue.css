@@ -34,18 +34,21 @@ body{
      font-size:10px;
 }
 .word{
-     padding-left:10px;
+     padding-left:20px;
      margin-bottom:20px;
 }
 .underline{
      width:200px;
      margin:0 auto;
-     padding:10px;
+     margin-bottom:20px;
+     padding-top:5px;
+     padding-bottom:5px;
      border-bottom:1px solid #1D2F52;
      text-align:center;
 }
 #search{
       width:180px;
+      height:40px;
       border:none;
       outline:none;
       text-align:center;
