@@ -37,7 +37,7 @@
         
         exactMatch.forEach((row, index)=>createWordElement(index+1,row));
         startMatch.forEach ((row, index)=>createWordElement(index+1+exactMatch.length,row));
-        otherMatch.forEach((row, index)=>createWordElement(index+1+exactMatch.length+startMatch.length,row);
+        otherMatch.forEach((row, index)=>createWordElement(index+1+exactMatch.length+startMatch.length,row));
         
         function createWordElement(id,data) {
           const div=document.createElement('div');
