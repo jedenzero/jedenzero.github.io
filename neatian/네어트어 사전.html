@@ -31,7 +31,7 @@
       fetch('https://sheets.googleapis.com/v4/spreadsheets/13LICoyhYt4Do9R24ktfoDpSDFxhHKpO-r44P3ROTJZQ/values/ne!A:C?key=AIzaSyATLeHQh6kM0LWRJjLg8CmzoSdnntFrmFk')
       .then(response => response.json())
       .then(data => {
-        const words = cut(data).flat();
+        const words = cut(data);
         const matchedWords = words.filter(word => word.includes(keyword));
 
         output.innerHTML = '';
