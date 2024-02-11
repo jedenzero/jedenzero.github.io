@@ -12,7 +12,9 @@
       <a style="margin-left:20px;color:#1D2F52;font-size:15px;" href="https://jedenzero.github.io/neatian/">NEĂTĂK</a>
     </div>
     <div class="contain" style="width:260px;">
-    <input type="text" id="search" onkeyup="search()">
+    <div class="underline">
+      <input type="text" id="search" onkeyup="search()">
+    </div>
     <div id="output"></div>
     </div>
   </body>
@@ -34,14 +36,14 @@
         while (matchedWords.indexOf(keyword)>-1){
             const div = document.createElement('div');
             div.className='word';
-            p.innerHTML = '<h2>'+keyword+'</h2>';
+            div.innerHTML = '<h2>'+keyword+'</h2>';
             output.appendChild(div);
             matchedWords.splice(matchedWords.indexOf(keyword),1);
         }
         matchedWords.forEach(word => {
             const div = document.createElement('div');
             div.className='word';
-            p.innerHTML = '<h2>'+word+'</h2>';
+            div.innerHTML = '<h2>'+word+'</h2>';
             output.appendChild(div);
         });
       })
