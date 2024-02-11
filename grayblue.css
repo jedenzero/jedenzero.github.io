@@ -34,15 +34,17 @@ body{
      font-size:10px;
 }
 .word{
+     padding-left:10px;
      margin-bottom:20px;
+}
+.underline{
+     width:200px;
+     border-bottom:1px solid #1D2F52;
 }
 #search{
       display:block;
       width:200px;
-      border-top:0;
-      border-bottom:1px solid #1D2F52;
-      border-left:0;
-      border-right:0;
+      border:none;
       margin:0 auto;
       padding:10px;
       outline:none;
