@@ -50,7 +50,10 @@ body{
       outline:none;
       text-align:center;
       font-size:20px;
-      background-color:00000000;
+      font-family:"Montserrat","Noto Sans","Noto Sans KR";
+      color:#374052;
+      font-weight:300,700;
+      background-color:#FAFAFA;
 }
 h2,h3{
      color:#1D2F52;
