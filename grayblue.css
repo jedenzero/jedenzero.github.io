@@ -41,8 +41,8 @@ body{
      width:200px;
      margin:0 auto;
      margin-bottom:20px;
-     padding-top:5px;
-     padding-bottom:5px;
+     padding-top:0;
+     padding-bottom:0;
      border-bottom:1px solid #1D2F52;
      text-align:center;
 }
