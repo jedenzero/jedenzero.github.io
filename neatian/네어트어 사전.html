@@ -15,7 +15,36 @@
     <div class="contain" style="width:260px;">
     <input type="text" id="search" onkeyup="search()">
     <p id="output"></p>
+    </div>
   </body>
   <script>
+    const input = document.getElementById('search');
+    const resultDiv = document.getElementById('output');
+
+    search() {
+      const keyword = input.value;
+
+      fetch('https://sheets.googleapis.com/v4/spreadsheets/13LICoyhYt4Do9R24ktfoDpSDFxhHKpO-r44P3ROTJZQ/values/ne!A:A?key=AIzaSyATLeHQh6kM0LWRJjLg8CmzoSdnntFrmFk')
+      .then(response => response.json())
+      .then(data => {
+        const words = data.values.flat();
+        const matchedWords = words.filter(word => word.includes(keyword));
+
+        output.innerHTML = '';
+        
+        while (matchedWords.indexOf(keyword)>-1){
+            const p = document.createElement('p');
+            p.innerHTML = '(일치)'+keyword;
+            output.appendChild(p);
+            matchedWords.splice(matchedWords.indexOf(keyword),1);
+        }
+        matchedWords.forEach(word => {
+            const p = document.createElement('p');
+            p.innerHTML = ''+word;
+            output.appendChild(p);
+        });
+      })
+      .catch(error => console.error('Error:', error));
+    };
   </script>
 </html>
