@@ -12,15 +12,19 @@
       <a style="margin-left:20px;color:#1D2F52;font-size:15px;" href="https://jedenzero.github.io/neatian/">NEĂTĂK</a>
     </div>
     <div class="contain" style="width:260px;">
+    <p id="total_amount"></p>
     <div class="underline">
       <input type="text" id="search" onkeyup="search()">
     </div>
+    <p id="search_amount"></p>
     <div id="output"></div>
     </div>
   </body>
   <script>
     const input = document.getElementById('search');
-    const resultDiv = document.getElementById('output');
+    const output = document.getElementById('output');
+    const totalAmount = document.getElementById('total_amount');
+    const searchAmount = document.getElementById('search_amount');
     
     function search() {
       const keyword = input.value;
@@ -33,6 +37,8 @@
         let startMatch = Match.filter(row=>row[0].startsWith(keyword)&&row[0]!==keyword);
         let otherMatch = Match.filter(row=>!exactMatch.includes(row)&&!startMatch.includes(row));
 
+        totalAmount.innerHTML = '현재 총 단어수 : '+data.values.length+'개'
+        searchAmount.innerHTML = '검색 결과 : '+Match.length+'개'
         output.innerHTML = '';
         
         exactMatch.forEach((row, index)=>createWordElement(index+1,row));
