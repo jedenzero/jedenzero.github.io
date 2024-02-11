@@ -39,6 +39,7 @@ body{
 }
 .underline{
      width:200px;
+     margin:0 auto;
      border-bottom:1px solid #1D2F52;
 }
 #search{
