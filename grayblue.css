@@ -33,10 +33,16 @@ body{
      padding-right:5px;
      font-size:10px;
 }
+.word{
+     margin-bottom:20px;
+}
 #search{
       display:block;
       width:200px;
-      border-bottom:1px solid #5C90FF;
+      border-top:0;
+      border-bottom:1px solid #1D2F52;
+      border-left:0;
+      border-right:0;
       margin:0 auto;
       padding:10px;
       outline:none;
