@@ -33,7 +33,7 @@ body{
      padding-right:5px;
      font-size:10px;
 }
-.search{
+#search{
       display:block;
       width:200px;
       border-bottom:1px solid #5C90FF;
