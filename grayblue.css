@@ -46,6 +46,14 @@ body{
      border-bottom:1px solid #1D2F52;
      text-align:center;
 }
+.limit{
+     display:inline-block;
+     text-align:center;
+     padding-left:10px;
+     padding-right:10px;
+     height:50px;
+     border-radius:25px;
+}
 #search{
       width:180px;
       height:40px;
