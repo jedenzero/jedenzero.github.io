@@ -67,9 +67,11 @@
          }
       })
       .catch(error => console.error('Error:', error));
-    };
+    }
     function limit(element){
-      if (element.style.backgroundColor!=="#F5F5F5"){
+      const computed = window.getComputedStyle(element);
+      
+      if (computed.backgroundColor!=="#F5F5F5"){
         element.style.backgroundColor="#F5F5F5";
         element.style.color="#374052";
         limitarr.push(element.innerText);
@@ -79,6 +81,7 @@
         element.style.color="#F5F5F5";
         limitarr.splice(limitarr.indexOf(element.innerText),1);
       }
+      search();
     }
     search();
   </script>
