@@ -70,14 +70,14 @@
     };
     function limit(){
       if (this.style.backgroundColor!==#F5F5F5){
-        this.style.backgroundColor=#F5F5F5;
-        this.style.color=#374052;
-        limit.push(limit.this.innerText);
+        this.style.backgroundColor="#F5F5F5";
+        this.style.color="#374052";
+        limit.push(this.innerText);
       }
       else{
-        this.style.backgroundColor=#1D2F52;
-        this.style.color=#F5F5F5;
-        limit.splice(limit.indexOf(limit.this.innerText),1);
+        this.style.backgroundColor="#1D2F52";
+        this.style.color="#F5F5F5";
+        limit.splice(limit.indexOf(this.innerText),1);
       }
     }
     search();
