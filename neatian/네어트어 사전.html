@@ -71,7 +71,7 @@
     function limit(element){
       const computed = window.getComputedStyle(element);
       
-      if (computed.backgroundColor!=="#F5F5F5"){
+      if (computed.backgroundColor!=="rgb(245,245,245)"){
         element.style.backgroundColor="#F5F5F5";
         element.style.color="#374052";
         limitarr.push(element.innerText);
