@@ -69,7 +69,7 @@
       .catch(error => console.error('Error:', error));
     }
     function limit(element){
-      const computed = window.getComputedStyle(element);
+      let computed = window.getComputedStyle(element);
       
       if (computed.backgroundColor!=="rgb(245,245,245)"){
         element.style.backgroundColor="rgb(245,245,245)";
