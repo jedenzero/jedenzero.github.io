@@ -35,6 +35,7 @@
     const totalAmount = document.getElementById('total_amount');
     const searchAmount = document.getElementById('search_amount');
     const limitarr = [];
+    const colors = {"명사":0, "동사":0, "조사":0, "부사":0, "접속사":0, "전접사":0, "후접사":0, "접두사":0, "접미사":0};
     
     function search() {
       const keyword = input.value;
@@ -69,10 +70,8 @@
       .catch(error => console.error('Error:', error));
     }
     function limit(element){
-      let computed = window.getComputedStyle(element);
-      
-      if (computed.backgroundColor!=="rgb(245,245,245)"){
-        element.style.backgroundColor="rgb(245,245,245)";
+      if (colors[element.innerText]===0){
+        element.style.backgroundColor="#F5F5F5";
         element.style.color="#374052";
         limitarr.push(element.innerText);
       }
@@ -81,6 +80,7 @@
         element.style.color="#F5F5F5";
         limitarr.splice(limitarr.indexOf(element.innerText),1);
       }
+      colors[element.innerText]=1-colors[element.innerText];
       search();
     }
     search();
