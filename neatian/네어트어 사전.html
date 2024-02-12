@@ -33,7 +33,7 @@
       .then(response => response.json())
       .then(data => {
         let Match = data.values.filter(row=>row[0].includes(keyword)||row[2].includes(keyword));
-        let exactMatch = Match.filter(row=>row[0]===(keyword)||row[2].startsWith(keyword)||row[2].endsWith(', '+keyword)||row[2].includes(', '+keyword+','));
+        let exactMatch = Match.filter(row=>row[0]===(keyword)||row[2].split(', ').includes(keyword));
         let startMatch = Match.filter(row=>row[0].startsWith(keyword)&&row[0]!==keyword);
         let otherMatch = Match.filter(row=>!exactMatch.includes(row)&&!startMatch.includes(row));
 
