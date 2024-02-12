@@ -34,7 +34,7 @@
     const output = document.getElementById('output');
     const totalAmount = document.getElementById('total_amount');
     const searchAmount = document.getElementById('search_amount');
-    const limit = [];
+    const limitare = [];
     
     function search() {
       const keyword = input.value;
@@ -43,7 +43,7 @@
       .then(response => response.json())
       .then(data => {
         let Match = data.values.filter(row=>row[0].includes(keyword)||row[2].includes(keyword));
-        Match = Match.filter(row=>!limit.includes(row[1]));
+        Match = Match.filter(row=>!limitarr.includes(row[1]));
         
         let exactMatch = Match.filter(row=>row[0]===(keyword)||row[2].split(', ').includes(keyword));
         let startMatch = Match.filter(row=>row[0].startsWith(keyword)&&row[0]!==keyword);
@@ -72,12 +72,12 @@
       if (this.style.backgroundColor!=="#F5F5F5"){
         this.style.backgroundColor="#F5F5F5";
         this.style.color="#374052";
-        limit.push(this.innerText);
+        limitarr.push(this.innerText);
       }
       else{
         this.style.backgroundColor="#1D2F52";
         this.style.color="#F5F5F5";
-        limit.splice(limit.indexOf(this.innerText),1);
+        limitarr.splice(limitarr.indexOf(this.innerText),1);
       }
     }
     search();
