@@ -16,15 +16,15 @@
     <div class="underline">
       <input type="text" id="search" onkeyup="search()">
     </div>
-    <div class="limit" onclick="limit()">명사</div>
-    <div class="limit" onclick="limit()">동사</div>
-    <div class="limit" onclick="limit()">조사</div>
-    <div class="limit" onclick="limit()">부사</div>
-    <div class="limit" onclick="limit()">접속사</div>
-    <div class="limit" onclick="limit()">전접사</div>
-    <div class="limit" onclick="limit()">후접사</div>
-    <div class="limit" onclick="limit()">접두사</div>
-    <div class="limit" onclick="limit()">접미사</div>
+    <div class="limit" onclick="limit(this)">명사</div>
+    <div class="limit" onclick="limit(this)">동사</div>
+    <div class="limit" onclick="limit(this)">조사</div>
+    <div class="limit" onclick="limit(this)">부사</div>
+    <div class="limit" onclick="limit(this)">접속사</div>
+    <div class="limit" onclick="limit(this)">전접사</div>
+    <div class="limit" onclick="limit(this)">후접사</div>
+    <div class="limit" onclick="limit(this)">접두사</div>
+    <div class="limit" onclick="limit(this)">접미사</div>
     <p id="search_amount"></p>
     <div id="output"></div>
     </div>
@@ -68,16 +68,16 @@
       })
       .catch(error => console.error('Error:', error));
     };
-    function limit(){
-      if (this.style.backgroundColor!=="#F5F5F5"){
-        this.style.backgroundColor="#F5F5F5";
-        this.style.color="#374052";
-        limitarr.push(this.innerText);
+    function limit(element){
+      if (element.style.backgroundColor!=="#F5F5F5"){
+        element.style.backgroundColor="#F5F5F5";
+        element.style.color="#374052";
+        limitarr.push(element.innerText);
       }
       else{
-        this.style.backgroundColor="#1D2F52";
-        this.style.color="#F5F5F5";
-        limitarr.splice(limitarr.indexOf(this.innerText),1);
+        element.style.backgroundColor="#1D2F52";
+        element.style.color="#F5F5F5";
+        limitarr.splice(limitarr.indexOf(element.innerText),1);
       }
     }
     search();
