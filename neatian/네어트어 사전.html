@@ -97,11 +97,18 @@
             div.innerHTML+='['+detailNames[dat[3]]+'] '
           }
           div.innerHTML+=dat[2];
-	  data.values.map(row=>row[4]).forEach(el=>{
-	    if(el.split(', ').includes(dat[0])){
-		derive.push(data.values[data.values.indexOf(el)][0]);
-	    }
-	  });
+	  data.values.map(row => {
+            if (row.length > 4) {
+              return row[4];
+            }
+	    else {
+              return null;
+            }
+          }).forEach(el => {
+            if (el&&el.split(', ').includes(dat[0])) {
+              derive.push(data.values[data.values.indexOf(el)][0]);
+            }
+          });
 	  if (derive.length!==0){
 	    div.innerHTML+='<b3>합성어/파생어</b3>'
             derive.forEach(el=>{
