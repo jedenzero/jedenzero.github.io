@@ -50,13 +50,16 @@
     const searchAmount = document.getElementById('search_amount');
     const fl = document.getElementById('floating');
     const lf = document.getElementById('gnitaolf');
-    const limitarr = [];
-    const timilarr = [];
-    const partColors = {"명사":0, "동사":0, "조사":0, "부사":0, "접속사":0, "전접사":0, "후접사":0, "접두사":0, "접미사":0};
-    const detailColors = {"초기 네어트어":1, "민중 네어트어":0, "예타뷔스 방언":1};
     const detailCodes = {"초기 네어트어":"γo", "민중 네어트어":"ze", "예타뷔스 방언":"je"};
+    const partColors = {"명사":0, "동사":0, "조사":0, "부사":0, "접속사":0, "전접사":0, "후접사":0, "접두사":0, "접미사":0};
+    const detailColors = Object.entries(detailCodes).reduce((acc, [key, value]) => ({...acc, [key]: 1}), {});
     const detailNames = Object.entries(detailCodes).reduce((acc, [key, value]) => ({...acc, [value]: key}), {});
+    const limitarr = [];
+    const timilarr = Object.entries(detailCodes).map(row=>row[1]);
     let variable = 0;
+    
+    detailColors["민중 네어트어"]=0;
+    timilarr.splice(timilar.indexOf('ze'),1);
     
     function search() {
       const keyword = input.value;
