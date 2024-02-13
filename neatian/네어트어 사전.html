@@ -110,10 +110,11 @@
             }
           });
 	  if (derive.length!==0){
-	    div.innerHTML+='<b3>합성어/파생어</b3>'
+	    div.innerHTML+='<h3>합성어/파생어</h3><ul>'
             derive.forEach(el=>{
-		div.innerHTML+=el+'<br>'
+		div.innerHTML+='<li>'+el+'</li>'
 	    });
+	    div.innerHTML+='</ul>'
           }
 	  div.innerHTML+='</p>'
           output.appendChild (div);
