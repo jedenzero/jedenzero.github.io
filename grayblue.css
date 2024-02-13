@@ -76,7 +76,10 @@ body{
      -webkit-backdrop-filter: blur(4px);
 }
 #gnitaolf{
+     display:flex;
      position:fixed;
+     justify-content:center;
+     align-items:center;
      bottom:20px;
      left:50%;
      transform:translate(-50%,0);
