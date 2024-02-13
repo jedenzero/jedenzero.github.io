@@ -34,7 +34,7 @@
       <h3>세부 분류</h3>
       <div class="limit" onclick="timil(this)">초기 네어트어</div>
       <div class="limit" onclick="timil(this)">민중 네어트어</div>
-      <i class="fi fi-bs-cross-small" onclick="visible()"></i>
+      <i class="fi fi-bs-cross" onclick="visible()"></i>
     </div>
     <div id="gnitaolf" onclick="visible()">
       <i class="fi fi-br-bars-filter"></i>
@@ -99,12 +99,12 @@
     }
     function visible(){
       if (variable===0){
-        fl.visibility="hidden";
-        lf.visibility="visible";
+        fl.style.visibility="hidden";
+        lf.style.visibility="visible";
       }
       else{
-        fl.visibility="visible";
-        lf.visibility="hidden";
+        fl.style.visibility="visible";
+        lf.style.visibility="hidden";
       }
       variable=1-variable;
     }
