@@ -106,7 +106,7 @@
             }
           }).forEach(el => {
             if (el&&el.split(', ').includes(dat[0])) {
-              derive.push(data.values[data.map(row=>row[4]).indexOf(el)][0]);
+              derive.push(data.values[data.values.map(row=>row[4]).indexOf(el)][0]);
             }
           });
 	  if (derive.length!==0){
