@@ -34,6 +34,10 @@
       <h3>세부 분류</h3>
       <div class="limit" onclick="timil(this)">초기 네어트어</div>
       <div class="limit" onclick="timil(this)">민중 네어트어</div>
+      <i class="fi fi-bs-cross-small" onclick="visible()"></i>
+    </div>
+    <div class="gnitaolf" onclick="visible()">
+      <i class="fi fi-br-bars-filter"></i>
     </div>
   </body>
   <script>
@@ -41,8 +45,11 @@
     const output = document.getElementById('output');
     const totalAmount = document.getElementById('total_amount');
     const searchAmount = document.getElementById('search_amount');
+    const fl = document.getElementsByClassName('floating');
+    const lf = document.getElementsByClassName('gnitaolf');
     const limitarr = [];
     const colors = {"명사":0, "동사":0, "조사":0, "부사":0, "접속사":0, "전접사":0, "후접사":0, "접두사":0, "접미사":0};
+    let variable = 0;
     
     function search() {
       const keyword = input.value;
@@ -89,6 +96,17 @@
       }
       colors[element.innerText]=1-colors[element.innerText];
       search();
+    }
+    function visible(){
+      if (variable===0){
+        fl.visibility="hidden";
+        lf.visibility="visible";
+      }
+      else{
+        fl.visibility="visible";
+        lf.visibility="hidden";
+      }
+      variable=1-variable;
     }
     search();
   </script>
