@@ -76,7 +76,7 @@ body{
      -webkit-backdrop-filter: blur(4px);
 }
 .gnitaolf{
-     display:fixed;
+     position:fixed;
      bottom:20px;
      left:50%;
      transform:translate(-50%,0);
