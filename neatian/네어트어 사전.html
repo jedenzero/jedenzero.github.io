@@ -19,7 +19,7 @@
     <p id="search_amount"></p>
     <div id="output"></div>
     </div>
-    <div class="floating">
+    <div id="floating">
       <h2 style="text-align:center;">범위 제한</h2>
       <h3>품사</h3>
       <div class="limit" onclick="limit(this)">명사</div>
@@ -36,7 +36,7 @@
       <div class="limit" onclick="timil(this)">민중 네어트어</div>
       <i class="fi fi-bs-cross-small" onclick="visible()"></i>
     </div>
-    <div class="gnitaolf" onclick="visible()">
+    <div id="gnitaolf" onclick="visible()">
       <i class="fi fi-br-bars-filter"></i>
     </div>
   </body>
@@ -45,8 +45,8 @@
     const output = document.getElementById('output');
     const totalAmount = document.getElementById('total_amount');
     const searchAmount = document.getElementById('search_amount');
-    const fl = document.getElementsByClassName('floating');
-    const lf = document.getElementsByClassName('gnitaolf');
+    const fl = document.getElementsById('floating');
+    const lf = document.getElementsById('gnitaolf');
     const limitarr = [];
     const colors = {"명사":0, "동사":0, "조사":0, "부사":0, "접속사":0, "전접사":0, "후접사":0, "접두사":0, "접미사":0};
     let variable = 0;
