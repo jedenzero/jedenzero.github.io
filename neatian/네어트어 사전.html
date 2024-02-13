@@ -64,7 +64,7 @@
     function search() {
       const keyword = input.value;
 
-      fetch('https://sheets.googleapis.com/v4/spreadsheets/13LICoyhYt4Do9R24ktfoDpSDFxhHKpO-r44P3ROTJZQ/values/ne!A:D?key=AIzaSyATLeHQh6kM0LWRJjLg8CmzoSdnntFrmFk')
+      fetch('https://sheets.googleapis.com/v4/spreadsheets/13LICoyhYt4Do9R24ktfoDpSDFxhHKpO-r44P3ROTJZQ/values/ne!A:E?key=AIzaSyATLeHQh6kM0LWRJjLg8CmzoSdnntFrmFk')
       .then(response => response.json())
       .then(data => {
         let Match = data.values.filter(row=>row[0].includes(keyword)||row[2].includes(keyword));
@@ -83,15 +83,32 @@
         startMatch.forEach ((row, index)=>createWordElement(index+1+exactMatch.length,row));
         otherMatch.forEach((row, index)=>createWordElement(index+1+exactMatch.length+startMatch.length,row));
         
-        function createWordElement(id,data) {
+        function createWordElement(id,dat) {
           const div=document.createElement('div');
+	  const derive=[];
           div.className='word';
-          div.innerHTML+='<sup>'+id+'</sup>'+'<h2 style="display:inline-block;margin-bottom:0;"><b>'+data[0]+'</b></h2>';
-          div.innerHTML+='<p>'+data[1]+'<br>';
-          if (data[3]!=="ze"){
-            div.innerHTML+='['+detailNames[data[3]]+'] '
+          div.innerHTML+='<sup>'+id+'</sup>'+'<h2 style="display:inline-block;margin-bottom:0;"><b>'+dat[0]+'</b></h2>';
+          div.innerHTML+='<p>';
+	  if (dat[4]!==null){
+            div.innerHTML+=dat[4].replace(/ ,/, "+")+'<br>'
           }
-          div.innerHTML+=data[2]+'</p>';
+	  div.innerHTML+=dat[1]+'<br>';
+          if (dat[3]!==null){
+            div.innerHTML+='['+detailNames[dat[3]]+'] '
+          }
+          div.innerHTML+=dat[2];
+	  data.values.map(row=>row[4]).forEach(el=>{
+	    if(el.split(', ').includes(dat[0])){
+		derive.push(data.values[data.values.indexOf(el)][0]);
+	    }
+	  });
+	  if (derive.length!==0){
+	    div.innerHTML+='<b3>합성어/파생어</b3>'
+            derive.forEach(el=>{
+		div.innerHTML+=el+'<br>'
+	    });
+          }
+	  div.innerHTML+='</p>'
           output.appendChild (div);
          }
       })
