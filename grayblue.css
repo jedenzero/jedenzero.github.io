@@ -67,10 +67,22 @@ body{
      width:280px;
      padding-left:10px;
      padding-right:10px;
+     padding-bottom:10px;
      border-radius:10px;
      background-color:#FAFAFA80;
      backdrop-filter:blur(4px);
      -webkit-backdrop-filter: blur(4px);
+}
+.gnitaolf{
+     display:fixed;
+     bottom:20px;
+     left:50%;
+     transform:translate(-50%,0);
+     width:20px;
+     height:20px;
+     border-radius:20px;
+     color:#F5F5F5;
+     background-color:#1D2F52;
 }
 #search{
       width:180px;
