@@ -55,7 +55,7 @@
     const partColors = {"명사":0, "동사":0, "조사":0, "부사":0, "접속사":0, "전접사":0, "후접사":0, "접두사":0, "접미사":0};
     const detailColors = {"초기 네어트어":1, "민중 네어트어":0, "예타뷔스 방언":1};
     const detailCodes = {"초기 네어트어":"γo", "민중 네어트어":"ze", "예타뷔스 방언":"je"};
-    const detailNames = {a:b for b, a in detailCodes.items()};
+    const detailNames = Object.entries(detailCodes).reduce((acc, [key, value]) => ({...acc, [value]: key}), {});
     let variable = 0;
     
     function search() {
