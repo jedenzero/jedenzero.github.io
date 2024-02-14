@@ -18,6 +18,7 @@
     </div>
     <p id="search_amount"></p>
     <div id="output"></div>
+    <div style="height:100px;"></div>
     </div>
     <div id="floating">
       <h2 style="text-align:center;">범위 제한</h2>
@@ -89,10 +90,20 @@
       const div=document.createElement('div');
       const derive=[];
           div.className='word';
-          div.innerHTML+='<sup>'+id+'</sup>'+'<h2 style="display:inline-block;margin-bottom:0;"><b onclick="go(this)">'+dat[0]+'</b></h2>';
+          div.innerHTML+='<sup>'+id+'</sup>'+'<h2 style="display:inline-block;margin-bottom:0;"><b>'+dat[0]+'</b></h2>';
           div.innerHTML+='<p>';
   	  if (dat[4]){
-        div.innerHTML+=dat[4].replace(/ ,/g, " + ")+'<br>'
+        if(dat[4].indexOf('/')!==0){
+            div.innerHTML+='<div style="display:inline-block;" onclick="go(this)">'+dat[4].split('/')[0].split(', ')[0]+'</div>'
+            if(dat[4].split('/')[0].split(', ').splice(0,1)){
+              dat[4].split('/')[0].split(', ').splice(0,1).forEach(el=>{
+                div.innerHTML+='<div style="display:inline-block;">+</div><div style="display:inline-block;" onclick="go(this)">'+el+'</div>'
+              });
+            }
+        }
+        if(dat[4].indexOf('/')>==0){
+          div.innerHTML+='<div style="display:inline-block;">&lt;'+dat[4].slice(dat[4].indexOf('/')+1)+'</div>'
+        }
       }
   	  div.innerHTML+=dat[1]+'<br>';
   	  if (dat[3]!=="ze"){
@@ -107,7 +118,7 @@
           return null;
         }
       }).forEach(el => {
-        if (el&&el.split(', ').includes(dat[0])) {
+        if (el&&el.split(', ').includes(dat[0])&&el.indexOf('/')!==0) {
           derive.push(data.values[data.values.map(row=>row[4]).indexOf(el)][0]);
         }
       });
