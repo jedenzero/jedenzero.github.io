@@ -91,20 +91,22 @@
       const derive=[];
           div.className='word';
           div.innerHTML+='<sup>'+id+'</sup>'+'<h2 style="display:inline-block;margin-bottom:0;"><b>'+dat[0]+'</b></h2>';
-          div.innerHTML+='<p>';
   	  if (dat[4]){
+        div.innerHTML+='<div>'
         if(dat[4].indexOf('/')!==0){
             div.innerHTML+='<div style="display:inline-block;" onclick="go(this)">'+dat[4].split('/')[0].split(', ')[0]+'</div>'
-            if(dat[4].split('/')[0].split(', ').splice(0,1)){
-              dat[4].split('/')[0].split(', ').splice(0,1).forEach(el=>{
+            if(dat[4].split('/')[0].split(', ')[1]){
+              dat[4].split('/')[0].split(', ').slice(1).forEach(el=>{
                 div.innerHTML+='<div style="display:inline-block;">+</div><div style="display:inline-block;" onclick="go(this)">'+el+'</div>'
               });
             }
         }
         if(dat[4].indexOf('/')>=0){
-          div.innerHTML+='<div style="display:inline-block;">&lt;</div><div style="display:inline-block;" onclick="go(this)">'+dat[4].slice(dat[4].indexOf('/')+1)+'</div>'
+          div.innerHTML+='<div style="display:inline-block;">&lt; </div><div style="display:inline-block;" onclick="go(this)">'+dat[4].slice(dat[4].indexOf('/')+1)+'</div>'
         }
+        div.innerHTML+='</div>'
       }
+      div.innerHTML+='<p>'
   	  div.innerHTML+=dat[1]+'<br>';
   	  if (dat[3]!=="ze"){
         div.innerHTML+='['+detailNames[dat[3]]+'] '
