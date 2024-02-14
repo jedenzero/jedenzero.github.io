@@ -89,7 +89,7 @@
       const div=document.createElement('div');
       const derive=[];
           div.className='word';
-          div.innerHTML+='<sup>'+id+'</sup>'+'<h2 style="display:inline-block;margin-bottom:0;"><b>'+dat[0]+'</b></h2>';
+          div.innerHTML+='<sup>'+id+'</sup>'+'<h2 style="display:inline-block;margin-bottom:0;"><b onclick="go(this)">'+dat[0]+'</b></h2>';
           div.innerHTML+='<p>';
   	  if (dat[4]){
         div.innerHTML+=dat[4].replace(/ ,/g, " + ")+'<br>'
@@ -114,12 +114,16 @@
   	  if (derive.length!==0){
   	    div.innerHTML+='<h4>합성어/파생어</h4><ul>'
         derive.forEach(el=>{
-      		div.innerHTML+='<li>'+el+'</li>'
+      		div.innerHTML+='<li onclick="go(this)">'+el+'</li>'
       	 });
       	 div.innerHTML+='</ul>'
       }
   	  div.innerHTML+='</p>'
       output.appendChild (div);
+    }
+    function go(element){
+      input.value=element;
+      search();
     }
     function limit(element){
       if (partColors[element.innerText]===0){
