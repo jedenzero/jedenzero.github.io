@@ -79,13 +79,13 @@
         searchAmount.innerHTML = '검색 결과 : '+Match.length+'개'
         output.innerHTML = '';
         
-        exactMatch.forEach((row, index)=>createWordElement(index+1,row));
-        startMatch.forEach ((row, index)=>createWordElement(index+1+exactMatch.length,row));
-        otherMatch.forEach((row, index)=>createWordElement(index+1+exactMatch.length+startMatch.length,row));
+        exactMatch.forEach((row, index)=>createWordElement(index+1,row,data));
+        startMatch.forEach ((row, index)=>createWordElement(index+1+exactMatch.length,row,data));
+        otherMatch.forEach((row, index)=>createWordElement(index+1+exactMatch.length+startMatch.length,row,data));
       })
       .catch(error => console.error('Error:', error));
     }
-    function createWordElement(id,dat) {
+    function createWordElement(id,dat, data) {
       const div=document.createElement('div');
       const derive=[];
           div.className='word';
