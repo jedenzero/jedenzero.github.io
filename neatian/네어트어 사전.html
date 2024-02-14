@@ -10,7 +10,7 @@
   <body>
     <div class="header" style="display:flex;justify-content:space-between;">
       <a style="margin-left:20px;color:#1D2F52;font-size:15px;" href="https://jedenzero.github.io/neatian/">NEĂTĂK</a>
-      <div style="display:flex;justify-content:center;align-items:center;width:30px;height:30px;border-radius:15px;margin-right:20px;margin-top:10px;color:#F5F5F5;background-color:#1D2F52;font-size:10px;" onclick="graph()">
+      <div id="numeronnetwork" style="display:flex;justify-content:center;align-items:center;width:30px;height:30px;border-radius:15px;margin-right:20px;margin-top:10px;color:#F5F5F5;background-color:#1D2F52;font-size:10px;" onclick="graph()">
         <i class="fi fi-br-chart-network"></i>
       </div>
     </div>
@@ -193,8 +193,8 @@
         output.style.display="none";
         totalAmount.style.display="none";
         searchAmount.style.display="none";
-        document.getElementById('').style.backgroundColor='#F5F5F5';
-        document.getElementById('').style.color='#374052';
+        document.getElementById('numeronnetwork').style.backgroundColor='#F5F5F5';
+        document.getElementById('numeronnetwork').style.color='#374052';
         var g = new sigma({
           graph:{
             nodes:[],
@@ -235,8 +235,8 @@
         output.style.display="block";
         totalAmount.style.display="inline";
         searchAmount.style.display="inline";
-        document.getElementById('').style.backgroundColor='#1D2F52';
-        document.getElementById('').style.color='#F5F5F5';
+        document.getElementById('numeronnetwork').style.backgroundColor='#1D2F52';
+        document.getElementById('numeronnetwork').style.color='#F5F5F5';
       }
       graphX=1-graphX;
     }
