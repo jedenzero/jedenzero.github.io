@@ -10,7 +10,7 @@
   <body>
     <div class="header" style="display:flex;justify-content:space-between;">
       <a style="margin-left:20px;color:#1D2F52;font-size:15px;" href="https://jedenzero.github.io/neatian/">NEĂTĂK</a>
-      <div style="display:flex;justify-content:center;align-items:center;width:30px;height:30px;border-radius:15px;margin-top:10px;color:#F5F5F5;background-color:#1D2F52;" onclick="graph()">
+      <div style="display:flex;justify-content:center;align-items:center;width:30px;height:30px;border-radius:15px;margin-top:10px;color:#F5F5F5;background-color:#1D2F52;font-size:10px;" onclick="graph()">
         <i class="fi fi-br-chart-network" style="margin-right:20px;"></i>
       </div>
     </div>
@@ -197,14 +197,14 @@
             nodes:[],
             edges:[]
           },
-          container:'contain'
+          container:'contain',
           settings:{
             drawLabels:true
           }
         });
         
         Match.forEach(row=>{
-          s.graph.addNode({
+          g.graph.addNode({
             id:row[0],
             label:row[0],
             x:Math.random(),
@@ -216,10 +216,10 @@
         Match.forEach(row=>{
           if(row[4]){
             row[4].split('/')[0].split(', ').forEach(el=>{
-              s.graph.addEdge({
+              g.graph.addEdge({
                 source:el,
                 target:row[0],
-                type:'arrow'
+                type:'arrow',
                 color:'#CEDBF5'
               })
             });
