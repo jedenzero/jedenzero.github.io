@@ -16,7 +16,7 @@
     </div>
     <div class="contain" id="contain" style="width:260px;">
     <p id="total_amount"></p>
-    <div class="underline">
+    <div class="underline" id="underline">
       <input type="text" id="search" onkeyup="search()">
     </div>
     <p id="search_amount"></p>
@@ -50,6 +50,7 @@
   <script src="https://canjs.cloudflare.com/ajax/libs/sigma.js/1.2.1/sigma.min.js"></script>
   <script>
     const input = document.getElementById('search');
+    const line =  document.getElementById('underline');
     const output = document.getElementById('output');
     const totalAmount = document.getElementById('total_amount');
     const searchAmount = document.getElementById('search_amount');
@@ -187,7 +188,7 @@
     }
     function graph(){
       if(graphX===0){
-        input.style.display="none";
+        line.style.display="none";
         output.style.display="none";
         totalAmount.style.display="none";
         searchAmount.style.display="none";
@@ -228,7 +229,7 @@
         g.refresh();
       }
       else{
-        input.style.display="inline";
+        line.style.display="inline";
         output.style.display="block";
         totalAmount.style.display="inline";
         searchAmount.style.display="inline";
