@@ -5,13 +5,16 @@
 	  <meta http-equiv="X-UA-Compatible" content="IE=edge">
 	  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	  <title>네어트어</title>
-      <link rel="stylesheet" href="../grayblue.css">
+    <link rel="stylesheet" href="../grayblue.css">
   </head>
   <body>
-    <div class="header">
+    <div class="header" style="display:flex;justify-content:space-between;">
       <a style="margin-left:20px;color:#1D2F52;font-size:15px;" href="https://jedenzero.github.io/neatian/">NEĂTĂK</a>
+      <div style="display:flex;justify-content:center;align-items:center;width:30px;height:30px;border-radius:15px;margin-top:10px;color:#F5F5F5;background-color:#1D2F52;" onclick="graph()">
+        <i class="fi fi-br-chart-network" style="margin-right:20px;"></i>
+      </div>
     </div>
-    <div class="contain" style="width:260px;">
+    <div class="contain" id="contain" style="width:260px;">
     <p id="total_amount"></p>
     <div class="underline">
       <input type="text" id="search" onkeyup="search()">
@@ -44,6 +47,7 @@
       <i class="fi fi-br-bars-filter"></i>
     </div>
   </body>
+  <script src="https://canjs.cloudflare.com/ajax/libs/sigma.js/1.2.1/sigma.min.js"></script>
   <script>
     const input = document.getElementById('search');
     const output = document.getElementById('output');
@@ -58,6 +62,7 @@
     const limitarr = [];
     const timilarr = Object.entries(detailCodes).map(row=>row[1]);
     let variable = 0;
+    let graphX = 0;
     
     detailColors["민중 네어트어"]=0;
     timilarr.splice(timilarr.indexOf('ze'),1);
@@ -92,7 +97,7 @@
           div.className='word';
           div.innerHTML+='<sup>'+id+'</sup>'+'<h2 style="display:inline-block;margin-bottom:0;"><b>'+dat[0]+'</b></h2>';
   	  if (dat[4]){
-        div.innerHTML+='<div>'
+        div.innerHTML+='<div style="margin:0;padding:0;">'
         if(dat[4].indexOf('/')!==0){
             div.innerHTML+='<div style="display:inline-block;" onclick="go(this)">'+dat[4].split('/')[0].split(', ')[0]+'</div>'
             if(dat[4].split('/')[0].split(', ')[1]){
@@ -179,6 +184,56 @@
         lf.style.visibility="hidden";
       }
       variable=1-variable;
+    }
+    function graph(){
+      if(graphX===0){
+        input.style.display="none";
+        output.style.display="none";
+        totalAmount.style.display="none";
+        searchAmount.style.display="none";
+        
+        var g = new sigma({
+          graph:{
+            nodes:[],
+            edges:[]
+          },
+          container:'contain'
+          settings:{
+            drawLabels:true
+          }
+        });
+        
+        Match.forEach(row=>{
+          s.graph.addNode({
+            id:row[0],
+            label:row[0],
+            x:Math.random(),
+            y:Math.random(),
+            size:1,
+            color:'#374052'
+          })
+        });
+        Match.forEach(row=>{
+          if(row[4]){
+            row[4].split('/')[0].split(', ').forEach(el=>{
+              s.graph.addEdge({
+                source:el,
+                target:row[0],
+                type:'arrow'
+                color:'#CEDBF5'
+              })
+            });
+          }
+        });
+        g.refresh();
+      }
+      else{
+        input.style.display="inline";
+        output.style.display="block";
+        totalAmount.style.display="inline";
+        searchAmount.style.display="inline";
+      }
+      graphX=1-graphX;
     }
     search();
     visible();
