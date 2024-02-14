@@ -62,6 +62,7 @@
     const detailNames = Object.entries(detailCodes).reduce((acc, [key, value]) => ({...acc, [value]: key}), {});
     const limitarr = [];
     const timilarr = Object.entries(detailCodes).map(row=>row[1]);
+    let MatchT = [];
     let variable = 0;
     let graphX = 0;
     
@@ -77,6 +78,7 @@
         let Match = data.values.filter(row=>row[0].includes(keyword)||row[2].includes(keyword));
         Match = Match.filter(row=>!limitarr.includes(row[1]));
         Match = Match.filter(row=>!timilarr.includes(row[3]));
+        MatchT = Match;
         
         let exactMatch = Match.filter(row=>row[0]===(keyword)||row[2].split(', ').includes(keyword));
         let startMatch = Match.filter(row=>row[0].startsWith(keyword)&&row[0]!==keyword);
@@ -205,7 +207,7 @@
           }
         });
         
-        Match.forEach(row=>{
+        MatchT.forEach(row=>{
           g.graph.addNode({
             id:row[0],
             label:row[0],
@@ -215,7 +217,7 @@
             color:'#374052'
           })
         });
-        Match.forEach(row=>{
+        MatchT.forEach(row=>{
           if(row[4]){
             row[4].split('/')[0].split(', ').forEach(el=>{
               g.graph.addEdge({
@@ -230,6 +232,7 @@
         g.refresh();
       }
       else{
+        g.graph.clear();
         line.style.display="inline";
         output.style.display="block";
         totalAmount.style.display="inline";
