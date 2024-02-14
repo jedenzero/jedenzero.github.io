@@ -62,7 +62,6 @@
     const detailNames = Object.entries(detailCodes).reduce((acc, [key, value]) => ({...acc, [value]: key}), {});
     const limitarr = [];
     const timilarr = Object.entries(detailCodes).map(row=>row[1]);
-    const Match = [];
     let variable = 0;
     let graphX = 0;
     
@@ -75,7 +74,7 @@
       fetch('https://sheets.googleapis.com/v4/spreadsheets/13LICoyhYt4Do9R24ktfoDpSDFxhHKpO-r44P3ROTJZQ/values/ne!A:E?key=AIzaSyATLeHQh6kM0LWRJjLg8CmzoSdnntFrmFk')
       .then(response => response.json())
       .then(data => {
-        Match = data.values.filter(row=>row[0].includes(keyword)||row[2].includes(keyword));
+        let Match = data.values.filter(row=>row[0].includes(keyword)||row[2].includes(keyword));
         Match = Match.filter(row=>!limitarr.includes(row[1]));
         Match = Match.filter(row=>!timilarr.includes(row[3]));
         
