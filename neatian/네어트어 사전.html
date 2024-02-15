@@ -233,12 +233,14 @@
                     color:'#525F7A'
                   })
                 }
-                g.graph.addEdge({
-                  id:el+'-'+row[0],
-                  source:el,
-                  target:row[0],
-                  color:'#CEDBF5'
-                })
+                if(!g.graph.edges().find(edge=>edge.id===el+'-'+row[0])){
+                  g.graph.addEdge({
+                    id:el+'-'+row[0],
+                    source:el,
+                    target:row[0],
+                    color:'#CEDBF5'
+                  })
+                }
               });
             }
             else{
@@ -253,12 +255,14 @@
                     color:'#525F7A'
                   })
                 }
-                g.graph.addEdge({
-                  id:el+'-'+row[0],
-                  source:el,
-                  target:row[0],
-                  color:'#CEDBF5'
-                })
+                if(!g.graph.edges().find(edge=>edge.id===el+'-'+row[0])){
+                  g.graph.addEdge({
+                    id:el+'-'+row[0],
+                    source:el,
+                    target:row[0],
+                    color:'#CEDBF5'
+                  })
+                }
             }
           }
         });
