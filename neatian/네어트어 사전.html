@@ -209,7 +209,7 @@
         });
         
         MatchT.forEach(row=>{
-          if(!g.graph.nodes.includes(row[0]))
+          if(!g.graph.nodes().find(node=>node.id===row[0]))
           g.graph.addNode({
             id:row[0],
             label:row[0],
@@ -223,7 +223,7 @@
           if(row[4]){
             if(row[4].indexOf('/')===-1){
               row[4].split(', ').forEach(el=>{
-                if(!el){
+                if(!g.graph.nodes().find(node=>node.id===el)){
                   g.graph.addNode({
                     id:el,
                     label:el,
