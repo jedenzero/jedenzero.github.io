@@ -232,8 +232,11 @@
           parent(row);
         });
         g.refresh();
+        sigma.layouts.configForceAtlas2(g, {
+          scalingRatio:30
+        });
         g.startForceAtlas2();
-        var dragListener = sigma.plugins.dragNodes(g,g.renderers[0]);
+        sigma.plugins.dragNodes(g,g.renderers[0]);
       }
       else{
         g.stopForceAtlas2();
@@ -301,6 +304,12 @@
         }
       }
     }
+    g.bind('drag', function(event){
+      g.stopForceAtlas2();
+    });
+    g.bind('drop', function(event){
+      g.stopForceAtlas2();
+    });
     search();
     visible();
   </script>
