@@ -242,7 +242,7 @@
               });
             }
             else{
-              el=row[4].slice(1)
+              let el=row[4].slice(1);
                 if(!g.graph.nodes().find(node=>node.id===el)){
                   g.graph.addNode({
                     id:el,
