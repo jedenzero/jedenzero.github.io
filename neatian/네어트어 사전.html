@@ -67,6 +67,7 @@
     const limitarr = [];
     const timilarr = Object.entries(detailCodes).map(row=>row[1]);
     let MatchT = [];
+    let dataT = [];
     let variable = 0;
     let graphX = 0;
     let g = null;
@@ -84,6 +85,7 @@
         Match = Match.filter(row=>!limitarr.includes(row[1]));
         Match = Match.filter(row=>!timilarr.includes(row[3]));
         MatchT = Match;
+        dataT = data.values;
         
         let exactMatch = Match.filter(row=>row[0]===(keyword)||row[2].split(', ').includes(keyword));
         let startMatch = Match.filter(row=>row[0].startsWith(keyword)&&row[0]!==keyword);
@@ -209,7 +211,9 @@
           container:'graphbox',
           settings:{
             drawLabels:true,
-            defaultEdgeType:'arrow'
+            defaultEdgeType:'arrow',
+            defaultFont:window.getComputedStyle(document.body).fontFamily,
+            defaultLabelColor:'#1D2F52'
           }
         });
         
@@ -225,54 +229,9 @@
           })
         });
         MatchT.forEach(row=>{
-          if(row[4]){
-            if(row[4].indexOf('/')===-1){
-              row[4].split(', ').forEach(el=>{
-                if(!g.graph.nodes().find(node=>node.id===el)){
-                  g.graph.addNode({
-                    id:el,
-                    label:el,
-                    x:Math.random(),
-                    y:Math.random(),
-                    size:1,
-                    color:'#525F7A'
-                  })
-                }
-                if(!g.graph.edges().find(edge=>edge.id===el+'-'+row[0])){
-                  g.graph.addEdge({
-                    id:el+'-'+row[0],
-                    source:el,
-                    target:row[0],
-                    color:'#CEDBF5'
-                  })
-                }
-              });
-            }
-            else{
-              let el=row[4].slice(1);
-                if(!g.graph.nodes().find(node=>node.id===el)){
-                  g.graph.addNode({
-                    id:el,
-                    label:el,
-                    x:Math.random(),
-                    y:Math.random(),
-                    size:1,
-                    color:'#525F7A'
-                  })
-                }
-                if(!g.graph.edges().find(edge=>edge.id===el+'-'+row[0])){
-                  g.graph.addEdge({
-                    id:el+'-'+row[0],
-                    source:el,
-                    target:row[0],
-                    color:'#CEDBF5'
-                  })
-                }
-            }
-          }
+          parent(row);
         });
         g.refresh();
-        g.startForceAtlas2();
         var fa2 = sigma.layouts.configForceAtlas2(g, {
           scalingRatio: 20
         }).start();
@@ -290,6 +249,59 @@
         document.getElementById('numeronnetwork').style.color='#F5F5F5';
       }
       graphX=1-graphX;
+    }
+    function parent(row){
+      if(row[4]){
+        if(row[4].indexOf('/')===-1){
+          row[4].split(', ').forEach(el=>{
+            if(!g.graph.nodes().find(node=>node.id===el)){
+              g.graph.addNode({
+                id:el,
+                label:el,
+                x:Math.random(),
+                y:Math.random(),
+                size:1,
+                color:'#525F7A'
+              })
+            }
+            if(!g.graph.edges().find(edge=>edge.id===el+'-'+row[0])){
+              g.graph.addEdge({
+                id:el+'-'+row[0],
+                source:el,
+                target:row[0],
+                color:'#CEDBF5'
+              })
+            }
+            dataT.filter(roww=>roww[0]===el).forEach(ell=>{
+              parent(ell);
+            });
+          });
+        }
+        else{
+          let el=row[4].slice(1);
+            if(!g.graph.nodes().find(node=>node.id===el)){
+              g.graph.addNode({
+                id:el,
+                label:el,
+                x:Math.random(),
+                y:Math.random(),
+                size:1,
+                color:'#525F7A'
+              })
+            }
+            if(!g.graph.edges().find(edge=>edge.id===el+'-'+row[0])){
+              g.graph.addEdge({
+                id:el+'-'+row[0],
+                source:el,
+                target:row[0],
+                color:'#CEDBF5'
+              })
+            }
+            dataT.filter(roww=>roww[0]===el).forEach(ell=>{
+              parent(ell);
+            });
+        }
+      }
     }
     search();
     visible();
