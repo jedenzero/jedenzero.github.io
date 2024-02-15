@@ -49,6 +49,8 @@
     <div id="graphbox" style="display:none;height:500px;"></div>
   </body>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/sigma.js/1.2.1/sigma.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/sigma.js/1.2.1/plugins/sigma.layout.forceAtlas2.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/sigma.js/1.2.1/plugins/sigma.plugins.dragNodes.min.js"></script>
   <script>
     const contain = document.getElementById('contain');
     const graphBox = document.getElementById('graphbox');
@@ -195,6 +197,8 @@
       if(graphX===0){
         contain.style.display = 'none';
         graphbox.style.display = 'block';
+        fl.style.visibility="hidden";
+        lf.style.visibility="hidden";
         document.getElementById('numeronnetwork').style.backgroundColor='#F5F5F5';
         document.getElementById('numeronnetwork').style.color='#374052';
         g = new sigma({
@@ -268,12 +272,17 @@
           }
         });
         g.refresh();
+        g.startForceAtlas2();
+        var dragListener = sigma.plugins.dragNodes(g,g.renderers[0]);
       }
       else{
+        g.stopForceAtlas2();
         g.graph.clear();
         g.refresh();
         contain.style.display = 'block';
         graphbox.style.display = 'none';
+        fl.style.visibility="hidden";
+        lf.style.visibility="visible";
         document.getElementById('numeronnetwork').style.backgroundColor='#1D2F52';
         document.getElementById('numeronnetwork').style.color='#F5F5F5';
       }
