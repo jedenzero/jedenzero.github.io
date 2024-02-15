@@ -209,8 +209,9 @@
         });
         
         MatchT.forEach(row=>{
+          if(!g.graph.nodes.includes(row[0]))
           g.graph.addNode({
-            id:row[0]+row[1],
+            id:row[0],
             label:row[0],
             x:Math.random(),
             y:Math.random(),
@@ -224,12 +225,12 @@
               row[4].split(', ').forEach(el=>{
                 if(!el){
                   g.graph.addNode({
-                  id:row[0]+row[1],
-                  label:row[0],
-                  x:Math.random(),
-                  y:Math.random(),
-                  size:1,
-                  color:'#525F7A'
+                    id:el,
+                    label:el,
+                    x:Math.random(),
+                    y:Math.random(),
+                    size:1,
+                    color:'#525F7A'
                   })
                 }
                 g.graph.addEdge({
@@ -244,8 +245,8 @@
               el=row[4].slice(1)
                 if(!el){
                   g.graph.addNode({
-                    id:row[0]+row[1],
-                    label:row[0],
+                    id:el,
+                    label:el,
                     x:Math.random(),
                     y:Math.random(),
                     size:1,
