@@ -46,7 +46,7 @@
     <div id="gnitaolf" onclick="visible()">
       <i class="fi fi-br-bars-filter"></i>
     </div>
-    <div id="graphbox" style="display:none;"></div>
+    <div id="graphbox" style="display:none;height:500px;"></div>
   </body>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/sigma.js/1.2.1/sigma.min.js"></script>
   <script>
@@ -204,7 +204,8 @@
           },
           container:'graphbox',
           settings:{
-            drawLabels:true
+            drawLabels:true,
+            defaultEdgeType:'arrow'
           }
         });
         
