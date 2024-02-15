@@ -273,6 +273,9 @@
         });
         g.refresh();
         g.startForceAtlas2();
+        var fa2 = sigma.layouts.configForceAtlas2(g, {
+          scalingRatio: 20
+        }).start();
         var dragListener = sigma.plugins.dragNodes(g,g.renderers[0]);
       }
       else{
