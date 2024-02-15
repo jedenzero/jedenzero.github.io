@@ -210,7 +210,7 @@
         
         MatchT.forEach(row=>{
           g.graph.addNode({
-            id:row[0],
+            id:row[0]+row[1],
             label:row[0],
             x:Math.random(),
             y:Math.random(),
@@ -220,13 +220,43 @@
         });
         MatchT.forEach(row=>{
           if(row[4]){
-            row[4].split('/')[0].split(', ').forEach(el=>{
-              g.graph.addEdge({
-                source:el,
-                target:row[0],
-                color:'#CEDBF5'
-              })
-            });
+            if(row[4].indexOf('/')===-1){
+              row[4].split(', ').forEach(el=>{
+                if(!el){
+                  g.graph.addNode({
+                  id:row[0]+row[1],
+                  label:row[0],
+                  x:Math.random(),
+                  y:Math.random(),
+                  size:1,
+                  color:'#525F7A'
+                  })
+                }
+                g.graph.addEdge({
+                  source:el,
+                  target:row[0],
+                  color:'#CEDBF5'
+                })
+              });
+            }
+            else{
+              el=row[4].slice(1)
+                if(!el){
+                  g.graph.addNode({
+                    id:row[0]+row[1],
+                    label:row[0],
+                    x:Math.random(),
+                    y:Math.random(),
+                    size:1,
+                    color:'#525F7A'
+                  })
+                }
+                g.graph.addEdge({
+                  source:el,
+                  target:row[0],
+                  color:'#CEDBF5'
+                })
+            }
           }
         });
         g.refresh();
