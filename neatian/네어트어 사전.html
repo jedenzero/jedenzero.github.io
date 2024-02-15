@@ -232,9 +232,6 @@
           parent(row);
         });
         g.refresh();
-        sigma.layouts.configForceAtlas2(g, {
-          scalingRatio:30
-        });
         g.startForceAtlas2();
         sigma.plugins.dragNodes(g,g.renderers[0]);
         g.bind('drag', function(event){
