@@ -239,7 +239,7 @@
           speed: 0.1,
           iterations: 1000
         });
-        frListener.start(g);
+        frListener.start();
         sigma.plugins.dragNodes(g,g.renderers[0]);
         g.bind('drag', function(event){
           frListener.stop();
