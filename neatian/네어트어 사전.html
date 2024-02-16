@@ -90,7 +90,7 @@
       .then(response => response.json())
       .then(data => {
         let Match = data.values.filter(row=>row[0].includes(keyword)||row[2].includes(keyword));
-        Match = Match.filter(row=>!limitarr.includes(row[1]));
+        Match = Match.filter(row=>!limitarr.includes(row[1].slice(1)));
         Match = Match.filter(row=>!timilarr.includes(row[3]));
         MatchT = Match;
         dataT = data.values;
