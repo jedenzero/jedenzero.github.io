@@ -103,42 +103,43 @@
         searchAmount.innerHTML = '검색 결과 : '+Match.length+'개'
         output.innerHTML = '';
         
-        exactMatch.forEach((row, index)=>createWordElement(index+1,row,data));
-        startMatch.forEach ((row, index)=>createWordElement(index+1+exactMatch.length,row,data));
-        otherMatch.forEach((row, index)=>createWordElement(index+1+exactMatch.length+startMatch.length,row,data));
+        exactMatch.forEach((row, index)=>createWordElement(row,data));
+        startMatch.forEach ((row, index)=>createWordElement(row,data));
+        otherMatch.forEach((row, index)=>createWordElement(row,data));
       })
       .catch(error => console.error('Error:', error));
     }
     function createWordElement(id,dat, data) {
       const div=document.createElement('div');
       const derive=[];
+      
+      if(data.values.findIndex(row=>row===dat)===0||dat[0]!==data.values[data.values.findIndex(row=>row===dat)-1][0]){
       div.className='word';
-      div.innerHTML+='<sup>'+id+'</sup>'+'<h2 style="display:inline-block;margin-bottom:0;"><b>'+dat[0]+'</b>';
+      div.innerHTML+='<h2 style="display:inline-block;margin-bottom:0;"><b>'+dat[0]+'</b>';
       div.innerHTML+='</h2><div style="display:inline-block;margin-left:5px;" onclick="agraph('+dat+')"><i class="fi fi-br-chart-network"></i></div>';
   	  if (dat[4]){
         div.innerHTML+='<div style="margin:0;padding:0;">'
-        if(dat[4].indexOf('/')!==0){
-            div.innerHTML+='<div style="display:inline-block;" onclick="go(this)">'+dat[4].split('/')[0].split(', ')[0]+'</div>'
-            if(dat[4].split('/')[0].split(', ')[1]){
-              dat[4].split('/')[0].split(', ').slice(1).forEach(el=>{
+        if(dat[4].indexOf('/')==-1){
+            div.innerHTML+='<div style="display:inline-block;" onclick="go(this)">'+dat[4].split(', ')[0]+'</div>'
+            if(dat[4].split(', ')[1]){
+              dat[4].split(', ').slice(1).forEach(el=>{
                 div.innerHTML+='<div style="display:inline-block;margin-left:2px;margin-right:2px;">+</div><div style="display:inline-block;" onclick="go(this)">'+el+'</div>'
               });
             }
         }
-        if(dat[4].indexOf('/')>0){
-          div.innerHTML+='<div style="display:inline-block;width:2px;"></div>'
-        }
-        if(dat[4].indexOf('/')>=0){
-          div.innerHTML+='<div style="display:inline-block;margin-right:2px;">&lt;</div><div style="display:inline-block;" onclick="go(this)">'+dat[4].slice(dat[4].indexOf('/')+1)+'</div>'
+        else{
+          div.innerHTML+='<div style="display:inline-block;">&lt;</div><div style="display:inline-block;" onclick="go(this)">'+dat[4].slice(1)+'</div>'
         }
         div.innerHTML+='</div>'
       }
+      }
       div.innerHTML+='<p>'
-  	  div.innerHTML+=dat[1]+'<br>';
+  	  div.innerHTML+=dat[1].slice(1)+'<br>';
   	  if (dat[3]!=="ze"){
         div.innerHTML+='['+detailNames[dat[3]]+'] '
       }
       div.innerHTML+=dat[2];
+      if(dat[0]!==data.values[data.values.findIndex(row=>row===dat)+1][0]){
   	  data.values.map(row => {
         if (row.length > 4) {
           return row[4];
@@ -157,6 +158,7 @@
       		div.innerHTML+='<li onclick="go(this)">'+el+'</li>'
       	 });
       	 div.innerHTML+='</ul>'
+      }
       }
   	  div.innerHTML+='</p>'
       output.appendChild (div);
