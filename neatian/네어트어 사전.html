@@ -50,7 +50,6 @@
   </body>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/sigma.js/1.2.1/sigma.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/sigma.js/1.2.1/plugins/sigma.layout.forceAtlas2.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/sigma.js/1.2.1/plugins/sigma.plugins.dragNodes.min.js"></script>
   <script>
     const contain = document.getElementById('contain');
     const graphBox = document.getElementById('graphbox');
@@ -72,10 +71,13 @@
     let graphX = 0;
     let g = null;
     var ForceAtlas2Config = {
+          barnesHutOptimize:true,
           scalingRatio:20,
           gravity:2,
           dissuadeHubs:true,
-          coolDown:0.99
+          coolDown:0.99,
+          zoomMin:0.1,
+          zoomMax:10
     };
     
     detailColors["민중 네어트어"]=0;
@@ -240,12 +242,8 @@
         });
         g.refresh();
         g.startForceAtlas2(ForceAtlas2Config);
-        sigma.plugins.dragNodes(g,g.renderers[0]);
-        g.bind('drag', function(event){
-          g.stopForceAtlas2();
-        });
-        g.bind('drop', function(event){
-          g.startForceAtlas2();
+        g.cameras[0].goTo({
+          ratio:2
         });
       }
       else{
