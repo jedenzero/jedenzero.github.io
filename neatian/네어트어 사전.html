@@ -242,6 +242,9 @@
         });
         g.refresh();
         g.startForceAtlas2(ForceAtlas2Config);
+        setTimeout(function(){
+          g.stopForceAtlas2();
+        },200);
         g.cameras[0].goTo({
           ratio:2
         });
@@ -314,8 +317,7 @@
       }
     }
     function agraph(element){
-      MatchT=[];
-      MatchT.push(element);
+      MatchT=[element];
       graph();
     }
     search();
