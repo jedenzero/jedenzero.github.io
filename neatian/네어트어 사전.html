@@ -49,7 +49,7 @@
     <div id="graphbox" style="display:none;height:500px;"></div>
   </body>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/sigma.js/1.2.1/sigma.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/sigma.js/1.2.1/plugins/sigma.layout.forceAtlas2.min.js"></script>
+  <script src="https://raw.githubusercontent.com/Linkurious/linkurious.js/linkurious-version/plugins/sigma.layout.fruchtermanReingold/sigma.layout.fruchtermanReingold.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/sigma.js/1.2.1/plugins/sigma.plugins.dragNodes.min.js"></script>
   <script>
     const contain = document.getElementById('contain');
@@ -232,7 +232,14 @@
           parent(row);
         });
         g.refresh();
-        g.startForceAtlas2();
+        var frListener = sigma.layouts.fruchtermanReingold.configure(g, {
+          autoArea: true,
+          area: 1,
+          gravity: 1,
+          speed: 0.1,
+          iterations: 1000
+        });
+        sigma.layouts.fruchtermanReingold.start(g);
         sigma.plugins.dragNodes(g,g.renderers[0]);
         g.bind('drag', function(event){
           g.stopForceAtlas2();
