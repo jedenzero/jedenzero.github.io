@@ -49,7 +49,7 @@
     <div id="graphbox" style="display:none;height:500px;"></div>
   </body>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/sigma.js/1.2.1/sigma.min.js"></script>
-  <script src="https://raw.githubusercontent.com/Linkurious/linkurious.js/linkurious-version/plugins/sigma.layout.fruchtermanReingold/sigma.layout.fruchtermanReingold.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/sigma.js/1.2.1/plugins/sigma.layout.forceAtlas2.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/sigma.js/1.2.1/plugins/sigma.plugins.dragNodes.min.js"></script>
   <script>
     const contain = document.getElementById('contain');
@@ -71,6 +71,9 @@
     let variable = 0;
     let graphX = 0;
     let g = null;
+    var forceAtlas2Config = {
+          scalingRatio:30
+    };
     
     detailColors["민중 네어트어"]=0;
     timilarr.splice(timilarr.indexOf('ze'),1);
@@ -232,24 +235,17 @@
           parent(row);
         });
         g.refresh();
-        var frListener = sigma.layouts.fruchtermanReingold.configure(g.graph, {
-          autoArea: true,
-          area: 1,
-          gravity: 1,
-          speed: 0.1,
-          iterations: 1000
-        });
-        frListener.start();
+        g.startForceAtlas2(ForceAtlas2Config);
         sigma.plugins.dragNodes(g,g.renderers[0]);
         g.bind('drag', function(event){
-          frListener.stop();
+          g.stopForceAtlas2();
         });
         g.bind('drop', function(event){
-          frListener.start();
+          g.startForceAtlas2();
         });
       }
       else{
-        frListener.stop();
+        g.stopForceAtlas2();
         g.graph.clear();
         g.refresh();
         contain.style.display = 'block';
