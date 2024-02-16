@@ -239,17 +239,17 @@
           speed: 0.1,
           iterations: 1000
         });
-        sigma.layouts.fruchtermanReingold.start(g);
+        frListener.start(g);
         sigma.plugins.dragNodes(g,g.renderers[0]);
         g.bind('drag', function(event){
-          g.stopForceAtlas2();
+          frListener.stop();
         });
         g.bind('drop', function(event){
-          g.startForceAtlas2();
+          frListener.start();
         });
       }
       else{
-        g.stopForceAtlas2();
+        frListener.stop();
         g.graph.clear();
         g.refresh();
         contain.style.display = 'block';
