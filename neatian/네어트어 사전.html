@@ -46,10 +46,9 @@
     <div id="gnitaolf" onclick="visible()">
       <i class="fi fi-br-bars-filter"></i>
     </div>
-    <div id="graphbox" style="display:none;height:500px;"></div>
+    <svg style="display:none;width:250px;height:500px;"></svg>
   </body>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/sigma.js/1.2.1/sigma.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/sigma.js/1.2.1/plugins/sigma.layout.forceAtlas2.min.js"></script>
+  <script src="https://d3js.org/d3.v6.min.js"></script>
   <script>
     const contain = document.getElementById('contain');
     const graphBox = document.getElementById('graphbox');
@@ -70,15 +69,6 @@
     let variable = 0;
     let graphX = 0;
     let g = null;
-    var ForceAtlas2Config = {
-          barnesHutOptimize:true,
-          scalingRatio:20,
-          gravity:2,
-          dissuadeHubs:true,
-          coolDown:0.99,
-          zoomMin:0.1,
-          zoomMax:10
-    };
     
     detailColors["민중 네어트어"]=0;
     timilarr.splice(timilarr.indexOf('ze'),1);
@@ -214,77 +204,56 @@
         lf.style.visibility="hidden";
         document.getElementById('numeronnetwork').style.backgroundColor='#F5F5F5';
         document.getElementById('numeronnetwork').style.color='#374052';
-        g = new sigma({
-          graph:{
-            nodes:[],
-            edges:[]
-          },
-          container:'graphbox',
-          settings:{
-            drawLabels:true,
-            defaultEdgeType:'arrow',
-            defaultFont:window.getComputedStyle(document.body).fontFamily,
-            defaultLabelColor:'#1D2F52'
-          }
-        });
+        var nodes=[];
+        var links=[];
+        var svg=d3.select("svg");
+        var width=+svg.style("width").replace("px","");
+        var height=+svg.style("height").replace("px","");
+        var simulation=d3.forceSimulation(nodes)
+        .force("link",d3.forceLink(links).id(function(d){return d.id;}))
+        .force("charge",d3.forceManyBody())
+        .force("center",d3.forceCenter(width/2,height/2));
         
         MatchT.forEach(row=>{
-          if(!g.graph.nodes().find(node=>node.id===row[0]))
-          g.graph.addNode({
+          if(!nodes.find(node=>node['id']===row[0]))
+          nodes.push({
             id:row[0],
-            label:row[0],
-            x:Math.random(),
-            y:Math.random(),
-            size:1,
-            color:'#374052'
-          })
+            name:row[0]
+          });
         });
         MatchT.forEach(row=>{
           parent(row);
         });
-        g.refresh();
-        g.startForceAtlas2(ForceAtlas2Config);
-        setTimeout(function(){
-          g.stopForceAtlas2();
-        },500);
-        g.cameras[0].goTo({
-          ratio:0.5
-        });
+        svg.style("display","block");
       }
       else{
-        g.stopForceAtlas2();
-        g.graph.clear();
-        g.refresh();
+        svg.style("display","none");
+        svg.selectAll("*").remove();
         contain.style.display = 'block';
         graphbox.style.display = 'none';
         fl.style.visibility="hidden";
         lf.style.visibility="visible";
         document.getElementById('numeronnetwork').style.backgroundColor='#1D2F52';
         document.getElementById('numeronnetwork').style.color='#F5F5F5';
+        search();
       }
       graphX=1-graphX;
-      search();
     }
     function parent(row){
       if(row[4]){
         if(row[4].indexOf('/')===-1){
           row[4].split(', ').forEach(el=>{
-            if(!g.graph.nodes().find(node=>node.id===el)){
-              g.graph.addNode({
+            if(!nodes.find(node=>node['id']===el)){
+              nodes.push({
                 id:el,
-                label:el,
-                x:Math.random(),
-                y:Math.random(),
-                size:1,
-                color:'#525F7A'
-              })
+                name:el
+              });
             }
-            if(!g.graph.edges().find(edge=>edge.id===el+'-'+row[0])){
-              g.graph.addEdge({
+            if(!links.find(edge=>edge['id']===el+'-'+row[0])){
+              links.push({
                 id:el+'-'+row[0],
                 source:el,
                 target:row[0],
-                color:'#CEDBF5'
               })
             }
             dataT.filter(roww=>roww[0]===el).forEach(ell=>{
@@ -294,22 +263,17 @@
         }
         else{
           let el=row[4].slice(1);
-            if(!g.graph.nodes().find(node=>node.id===el)){
-              g.graph.addNode({
+            if(!nodes.find(node=>node['id']===el)){
+              nodes.push({
                 id:el,
-                label:el,
-                x:Math.random(),
-                y:Math.random(),
-                size:1,
-                color:'#525F7A'
-              })
+                name:el,
+              });
             }
-            if(!g.graph.edges().find(edge=>edge.id===el+'-'+row[0])){
-              g.graph.addEdge({
+            if(!links.find(edge=>edge.id===el+'-'+row[0])){
+              links.push({
                 id:el+'-'+row[0],
                 source:el,
                 target:row[0],
-                color:'#CEDBF5'
               })
             }
             dataT.filter(roww=>roww[0]===el).forEach(ell=>{
