@@ -68,6 +68,8 @@
     let variable = 0;
     let graphX = 0;
     let g = null;
+    var nodes=[];
+    var links=[];
     
     detailColors["민중 네어트어"]=0;
     timilarr.splice(timilarr.indexOf('ze'),1);
@@ -202,8 +204,8 @@
         lf.style.visibility="hidden";
         document.getElementById('numeronnetwork').style.backgroundColor='#F5F5F5';
         document.getElementById('numeronnetwork').style.color='#374052';
-        var nodes=[];
-        var links=[];
+        nodes=[];
+        links=[];
         var svg=d3.select("svg");
         var width=+svg.style("width").replace("px","");
         var height=+svg.style("height").replace("px","");
