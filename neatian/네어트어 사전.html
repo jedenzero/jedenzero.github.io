@@ -51,7 +51,6 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
   <script>
     const contain = document.getElementById('contain');
-    const graphBox = document.getElementById('graphbox');
     const input = document.getElementById('search');
     const output = document.getElementById('output');
     const totalAmount = document.getElementById('total_amount');
@@ -199,7 +198,6 @@
     function graph(){
       if(graphX===0){
         contain.style.display = 'none';
-        graphbox.style.display = 'block';
         fl.style.visibility="hidden";
         lf.style.visibility="hidden";
         document.getElementById('numeronnetwork').style.backgroundColor='#F5F5F5';
@@ -231,7 +229,6 @@
         svg.style("display","none");
         svg.selectAll("*").remove();
         contain.style.display = 'block';
-        graphbox.style.display = 'none';
         fl.style.visibility="hidden";
         lf.style.visibility="visible";
         document.getElementById('numeronnetwork').style.backgroundColor='#1D2F52';
