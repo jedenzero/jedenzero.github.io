@@ -252,8 +252,8 @@
             if(!links.find(edge=>edge['id']===el+'-'+row[0])){
               links.push({
                 id:el+'-'+row[0],
-                source:el,
-                target:row[0],
+                source:nodes.find(node=>node['id']==el),
+                target:nodes.find(node=>node['id']==row[0])
               })
             }
             dataT.filter(roww=>roww[0]===el).forEach(ell=>{
@@ -272,8 +272,8 @@
             if(!links.find(edge=>edge.id===el+'-'+row[0])){
               links.push({
                 id:el+'-'+row[0],
-                source:el,
-                target:row[0],
+                source:nodes.find(node=>node['id']==el),
+                target:nodes.find(node=>node['id']==row[0])
               })
             }
             dataT.filter(roww=>roww[0]===el).forEach(ell=>{
