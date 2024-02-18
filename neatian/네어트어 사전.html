@@ -46,7 +46,7 @@
     <div id="gnitaolf" onclick="visible()">
       <i class="fi fi-br-bars-filter"></i>
     </div>
-    <svg style="display:none;width:250px;height:500px;"></svg>
+    <svg id="svg" style="display:none;width:250px;height:500px;"></svg>
   </body>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
   <script>
@@ -130,7 +130,7 @@
         div.innerHTML+='['+detailNames[dat[3]]+'] '
       }
       div.innerHTML+=dat[2];
-      if(data.values.findIndex(row=>row===dat)==dataT.length||dat[0]!==data.values[data.values.findIndex(row=>row===dat)+1][0]){
+      if(data.values.findIndex(row=>row===dat)+1===dataT.length||dat[0]!==data.values[data.values.findIndex(row=>row===dat)+1][0]){
   	  data.values.map(row => {
         if (row.length > 4) {
           return row[4];
@@ -206,7 +206,7 @@
         document.getElementById('numeronnetwork').style.color='#374052';
         nodes=[];
         links=[];
-        var svg=d3.select("svg");
+        var svg=d3.select("#svg");
         var width=+svg.style("width").replace("px","");
         var height=+svg.style("height").replace("px","");
         var simulation=d3.forceSimulation(nodes)
