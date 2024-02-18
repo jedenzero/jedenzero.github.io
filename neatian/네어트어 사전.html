@@ -236,7 +236,21 @@
             .attr("d", "M0,-5L10,0L0,5")
             .attr("fill", "#CEDBF5")
             .style("stroke","none");
-
+	      
+	var simulation=d3.forceSimulation(nodes)
+        .force("link",d3.forceLink(links).id(function(d){return d.id;}))
+        .force("charge",d3.forceManyBody())
+        .force("center",d3.forceCenter(125,250));
+	
+        simulation.on ("tick",() => {
+          node.attr("x", d => d.x)
+            .attr("y", d => d.y);
+          link.attr("x1", d=>d.source.x)
+            .attr("y1", d=>d.source.y)
+            .attr("x2", d=>d.target.x)
+            .attr("y2", d => d.target.y);
+     	});
+	      
         const link = svg.append("g")
           .attr("class", "links")
           .selectAll("line")
@@ -255,19 +269,6 @@
           .text(d => d.name)
           .attr('x', d=>d.x)
           .attr('y', d=>d.y);
-	var simulation=d3.forceSimulation(nodes)
-        .force("link",d3.forceLink(links).id(function(d){return d.id;}))
-        .force("charge",d3.forceManyBody())
-        .force("center",d3.forceCenter(125,250));
-	
-        simulation.on ("tick",() => {
-          node.attr("x", d => d.x)
-            .attr("y", d => d.y);
-          link.attr("x1", d=>d.source.x)
-            .attr("y1", d=>d.source.y)
-            .attr("x2", d=>d.target.x)
-            .attr("y2", d => d.target.y);
-      });
       }
       else{
         svg.selectAll("*").remove();
