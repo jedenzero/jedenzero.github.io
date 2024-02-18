@@ -202,7 +202,6 @@
     function graph(){
       if(graphX===0){
         contain.style.display = 'none';
-        svg.style("display","block");
         fl.style.visibility="hidden";
         lf.style.visibility="hidden";
         document.getElementById('numeronnetwork').style.backgroundColor='#F5F5F5';
@@ -210,6 +209,7 @@
         nodes=[];
         links=[];
         var svg=d3.select("#svg");
+        svg.style("display","block");
         width=+svg.style("width").replace("px","");
         height=+svg.style("height").replace("px","");
         var simulation=d3.forceSimulation(nodes)
