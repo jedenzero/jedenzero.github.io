@@ -70,8 +70,8 @@
     let g = null;
     var nodes=[];
     var links=[];
-    var width=0;
-    var height=0;
+    var width=250;
+    var height=500;
     
     detailColors["민중 네어트어"]=0;
     timilarr.splice(timilarr.indexOf('ze'),1);
@@ -210,8 +210,7 @@
         links=[];
         var svg=d3.select("#svg");
         svg.style("display","block");
-        width=+svg.style("width").replace("px","");
-        height=+svg.style("height").replace("px","");
+        
         var simulation=d3.forceSimulation(nodes)
         .force("link",d3.forceLink(links).id(function(d){return d.id;}))
         .force("charge",d3.forceManyBody())
