@@ -217,12 +217,11 @@
         MatchT.forEach(row=>{
           if(!nodes.find(node=>node['id']===row[0]))
           nodes.push({
-            id:row[0],
-            name:row[0],
-            color:"#1D2F52",
-            x:125,
-            y:250
-          });
+	  	id: row[0],
+		name: row[0],
+		color: "#1D2F52",
+		x: Math.random() * svg.node().getBoundingClientRect().width,
+		y: Math.random() * svg.node().getBoundingClientRect().height
         });
         MatchT.forEach(row=>{
           parent(row);
@@ -289,8 +288,8 @@
                 id:el,
                 name:el,
                 color:"#374052",
-                x:125,
-                y:250
+                x: Math.random() * svg.node().getBoundingClientRect().width,
+		y: Math.random() * svg.node().getBoundingClientRect().height
               });
             }
             if(!links.find(edge=>edge['id']===el+'-'+row[0])){
@@ -312,8 +311,8 @@
                 id:el,
                 name:el,
                 color:"#374052",
-                x:125,
-                y:250
+                x: Math.random() * svg.node().getBoundingClientRect().width,
+		y: Math.random() * svg.node().getBoundingClientRect().height
               });
             }
             if(!links.find(edge=>edge.id===el+'-'+row[0])){
