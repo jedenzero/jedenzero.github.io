@@ -22,6 +22,7 @@
     <p id="search_amount"></p>
     <div id="output"></div>
     <div style="height:100px;"></div>
+    <svg id="svg" style="display:none;width:250px;height:500px;"></svg>
     </div>
     <div id="floating">
       <h2 style="text-align:center;">범위 제한</h2>
@@ -46,7 +47,6 @@
     <div id="gnitaolf" onclick="visible()">
       <i class="fi fi-br-bars-filter"></i>
     </div>
-    <svg id="svg" style="display:none;width:250px;height:500px;"></svg>
   </body>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
   <script>
@@ -219,7 +219,9 @@
           nodes.push({
             id:row[0],
             name:row[0],
-            color:"#1D2F52"
+            color:"#1D2F52",
+            x:width/2,
+            y:height/2
           });
         });
         MatchT.forEach(row=>{
@@ -287,7 +289,9 @@
               nodes.push({
                 id:el,
                 name:el,
-                color:"#374052"
+                color:"#374052",
+                x:width/2,
+                y:height/2
               });
             }
             if(!links.find(edge=>edge['id']===el+'-'+row[0])){
@@ -308,6 +312,9 @@
               nodes.push({
                 id:el,
                 name:el,
+                color:"#374052",
+                x:width/2,
+                y:height/2
               });
             }
             if(!links.find(edge=>edge.id===el+'-'+row[0])){
