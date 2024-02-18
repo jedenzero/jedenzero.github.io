@@ -220,8 +220,8 @@
 	  	id: row[0],
 		name: row[0],
 		color: "#1D2F52",
-		x: Math.random() * svg.node().getBoundingClientRect().width,
-		y: Math.random() * svg.node().getBoundingClientRect().height
+		x: Math.random() * 250,
+		y: Math.random() * 500
 	  });
 	  }
           });
@@ -263,8 +263,8 @@
         simulation.on ("tick",() => {
           node.attr("x", d => d.x)
             .attr("y", d => d.y);
-	    .console.log(d.x)
-	    .console.log(d.y);
+	  console.log(d.x);
+	  console.log(d.y);
           link.attr("x1", d=>d.source.x)
             .attr("y1", d=>d.source.y)
             .attr("x2", d=>d.target.x)
