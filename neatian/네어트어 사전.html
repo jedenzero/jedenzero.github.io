@@ -215,14 +215,16 @@
         .force("center",d3.forceCenter(125,250));
         
         MatchT.forEach(row=>{
-          if(!nodes.find(node=>node['id']===row[0]))
+          if(!nodes.find(node=>node['id']===row[0])){
           nodes.push({
 	  	id: row[0],
 		name: row[0],
 		color: "#1D2F52",
 		x: Math.random() * svg.node().getBoundingClientRect().width,
 		y: Math.random() * svg.node().getBoundingClientRect().height
-        });
+	  });
+	  }
+          });
         MatchT.forEach(row=>{
           parent(row);
         });
@@ -265,7 +267,7 @@
             .attr("y1", d=>d.source.y)
             .attr("x2", d=>d.target.x)
             .attr("y2", d => d.target.y);
-        });
+      });
       }
       else{
         svg.selectAll("*").remove();
