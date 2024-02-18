@@ -228,9 +228,9 @@
         svg.style("display","block");
       }
       else{
-        svg.style("display","none");
         svg.selectAll("*").remove();
         contain.style.display = 'block';
+        svg.style("display","none");
         fl.style.visibility="hidden";
         lf.style.visibility="visible";
         document.getElementById('numeronnetwork').style.backgroundColor='#1D2F52';
