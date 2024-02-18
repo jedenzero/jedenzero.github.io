@@ -70,8 +70,6 @@
     let g = null;
     var nodes=[];
     var links=[];
-    var width=250;
-    var height=500;
     
     detailColors["민중 네어트어"]=0;
     timilarr.splice(timilarr.indexOf('ze'),1);
@@ -214,7 +212,7 @@
         var simulation=d3.forceSimulation(nodes)
         .force("link",d3.forceLink(links).id(function(d){return d.id;}))
         .force("charge",d3.forceManyBody())
-        .force("center",d3.forceCenter(width/2,height/2));
+        .force("center",d3.forceCenter(125,250));
         
         MatchT.forEach(row=>{
           if(!nodes.find(node=>node['id']===row[0]))
@@ -222,8 +220,8 @@
             id:row[0],
             name:row[0],
             color:"#1D2F52",
-            x:width/2,
-            y:height/2
+            x:125,
+            y:250
           });
         });
         MatchT.forEach(row=>{
@@ -291,8 +289,8 @@
                 id:el,
                 name:el,
                 color:"#374052",
-                x:width/2,
-                y:height/2
+                x:125,
+                y:250
               });
             }
             if(!links.find(edge=>edge['id']===el+'-'+row[0])){
@@ -314,8 +312,8 @@
                 id:el,
                 name:el,
                 color:"#374052",
-                x:width/2,
-                y:height/2
+                x:125,
+                y:250
               });
             }
             if(!links.find(edge=>edge.id===el+'-'+row[0])){
