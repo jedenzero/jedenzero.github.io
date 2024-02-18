@@ -218,13 +218,53 @@
           if(!nodes.find(node=>node['id']===row[0]))
           nodes.push({
             id:row[0],
-            name:row[0]
+            name:row[0],
+            color:"#1D2F52"
           });
         });
         MatchT.forEach(row=>{
           parent(row);
         });
-        simulation.restart();
+        svg.append("defs").append("marker")
+          .attr("id", "arrowhead")
+          .attr("viewBox", "-0 -5 10 10")
+          .attr("refX", 13)
+          .attr("refY", 0)
+          .attr("orient", "auto")
+          .attr("markerWidth", 13)
+          .attr("markerHeight", 13)
+          .attr("xoverflow", "visible")
+          .append("svg:path")
+            .attr("d", "M0,-5L10,0L0,5")
+            .attr("fill", "#CEDBF5")
+            .style("stroke","none");
+
+        const link = svg.append("g")
+          .attr("class", "links")
+          .selectAll("line")
+          .data(links)
+          .enter().append("line")
+          .attr("stroke-width", 2)
+          .attr("stroke", "#CEDBF5")
+          .attr("marker-end", "url(#arrowhead)");
+          
+        const node = svg.append ("g")
+          .attr("class","nodes")
+          .selectAll("text")
+          .data(nodes)
+          .enter().append("text")
+          .style("fill", d=>d.color)
+          .text(d => d.name)
+          .attr('x', 6)
+          .attr('y', 3);
+        simulation.on ("tick",() => {
+          node.attr("x", d => d.x)
+            .attr("y", d => d.y);
+          link.attr("x1", d=>d.source.x)
+            .attr("y1", d=>d.source.y)
+            .attr("x2", d=>d.target.x)
+            .attr("y2", d => d.target.y);
+        });
         svg.style("display","block");
       }
       else{
@@ -246,7 +286,8 @@
             if(!nodes.find(node=>node['id']===el)){
               nodes.push({
                 id:el,
-                name:el
+                name:el,
+                color:"#374052"
               });
             }
             if(!links.find(edge=>edge['id']===el+'-'+row[0])){
