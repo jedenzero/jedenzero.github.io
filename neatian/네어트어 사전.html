@@ -202,6 +202,7 @@
     function graph(){
       if(graphX===0){
         contain.style.display = 'none';
+        svg.style("display","block");
         fl.style.visibility="hidden";
         lf.style.visibility="hidden";
         document.getElementById('numeronnetwork').style.backgroundColor='#F5F5F5';
@@ -269,7 +270,6 @@
             .attr("x2", d=>d.target.x)
             .attr("y2", d => d.target.y);
         });
-        svg.style("display","block");
       }
       else{
         svg.selectAll("*").remove();
