@@ -46,7 +46,7 @@
     <div id="gnitaolf" onclick="visible()">
       <i class="fi fi-br-bars-filter"></i>
     </div>
-    <svg id="svg" style="display:none;width:250px;height:500px;margin:0 auto;"></svg>
+    <svg id="svg" style="display:none;width:100%;height:100%;"></svg>
   </body>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
   <script>
@@ -57,6 +57,8 @@
     const searchAmount = document.getElementById('search_amount');
     const fl = document.getElementById('floating');
     const lf = document.getElementById('gnitaolf');
+    const width = document.getElementById('svg').getBoundingClientRect().width;
+    const height = document.getElementById('svg').getBoundingClientRect().height;
     const detailCodes = {"초기 네어트어":"γo", "민중 네어트어":"ze", "예타뷔스 방언":"je"};
     const partColors = {"명사":0, "동사":0, "조사":0, "부사":0, "접속사":0, "전접사":0, "후접사":0, "접두사":0, "접미사":0};
     const detailColors = Object.entries(detailCodes).reduce((acc, [key, value]) => ({...acc, [key]: 1}), {});
@@ -217,8 +219,8 @@
 	  	id: row[0],
 		name: row[0],
 		color: "#1D2F52",
-		x: Math.random() * 250,
-		y: Math.random() * 500
+		x: Math.random() * width,
+		y: Math.random() * height
 	  });
 	  }
           });
@@ -242,7 +244,7 @@
 	var simulation=d3.forceSimulation(nodes)
         .force("link",d3.forceLink(links).id(function(d){return d.id;}))
         .force("charge",d3.forceManyBody())
-        .force("center",d3.forceCenter(125,250));
+        .force("center",d3.forceCenter(width/2,height/2));
 	      
 	var zoom = d3.zoom()
   	  .scaleExtent([0.1, 10])
@@ -325,8 +327,8 @@
                 id:el,
                 name:el,
                 color:"#374052",
-                x: Math.random() * 250,
-		y: Math.random() * 500
+                x: Math.random() * width,
+		y: Math.random() * height
               });
             }
             if(!links.find(edge=>edge['id']===el+'-'+row[0])){
@@ -348,8 +350,8 @@
                 id:el,
                 name:el,
                 color:"#374052",
-                x: Math.random() * 250,
-		y: Math.random() * 500
+                x: Math.random() * width,
+		y: Math.random() * height
               });
             }
             if(!links.find(edge=>edge.id===el+'-'+row[0])){
