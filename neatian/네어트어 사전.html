@@ -255,8 +255,6 @@
     	  .on("drag", dragged)
     	  .on("end", dragended);
 
-	node.call(drag);
-
 	function dragstarted(d) {
   	  if (!d3.event.active) simulation.alphaTarget(0.3).restart();
   	  d.fx = d.x;
@@ -301,6 +299,8 @@
           .text(d => d.name)
           .attr('x', d=>d.x)
           .attr('y', d=>d.y);
+	      
+	node.call(drag);
       }
       else{
         svg.selectAll("*").remove();
