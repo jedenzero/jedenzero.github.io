@@ -208,7 +208,9 @@
         links=[];
         var svg=d3.select("#svg");
         svg.style("display","block");
-        
+	
+        var g=svg.append("g")
+	      
         MatchT.forEach(row=>{
           if(!nodes.find(node=>node['id']===row[0])){
           nodes.push({
@@ -245,10 +247,10 @@
 	var zoom = d3.zoom()
   	  .scaleExtent([0.1, 10])
   	  .on("zoom", function(event) {
-    	  svg.attr("transform", event.transform);
+    	  g.attr("transform", event.transform);
   	});
 
-	svg.call(zoom);
+	g.call(zoom);
 
 	var drag = d3.drag()
 	  .on("start", dragstarted)
@@ -281,7 +283,7 @@
             .attr("y2", d => d.target.y);
        	});
 	      
-        const link = svg.append("g")
+        const link = g.append("g")
           .attr("class", "links")
           .selectAll("line")
           .data(links)
@@ -290,7 +292,7 @@
           .attr("stroke", "#CEDBF5")
           .attr("marker-end", "url(#arrowhead)");
           
-        const node = svg.append ("g")
+        const node = g.append ("g")
           .attr("class","nodes")
           .selectAll("text")
           .data(nodes)
