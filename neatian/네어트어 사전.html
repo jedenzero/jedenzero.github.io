@@ -242,7 +242,6 @@
         .force("charge",d3.forceManyBody())
         .force("center",d3.forceCenter(125,250));
 	
-        /*
           simulation.on ("tick",() => {
           node.attr("x", d => d.x)
             .attr("y", d => d.y);
@@ -251,7 +250,6 @@
             .attr("x2", d=>d.target.x)
             .attr("y2", d => d.target.y);
        	});
-        */
 	      
         const link = svg.append("g")
           .attr("class", "links")
