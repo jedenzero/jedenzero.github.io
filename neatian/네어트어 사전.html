@@ -46,7 +46,7 @@
     <div id="gnitaolf" onclick="visible()">
       <i class="fi fi-br-bars-filter"></i>
     </div>
-    <svg id="svg" style="display:none;width:100vw;height:100vh;"></svg>
+    <svg id="svg" style="display:none;width:100vw;height:calc(100vh-50px);"></svg>
   </body>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
   <script>
@@ -57,8 +57,6 @@
     const searchAmount = document.getElementById('search_amount');
     const fl = document.getElementById('floating');
     const lf = document.getElementById('gnitaolf');
-    const width = document.getElementById('svg').getBoundingClientRect().width;
-    const height = document.getElementById('svg').getBoundingClientRect().height;
     const detailCodes = {"초기 네어트어":"γo", "민중 네어트어":"ze", "예타뷔스 방언":"je"};
     const partColors = {"명사":0, "동사":0, "조사":0, "부사":0, "접속사":0, "전접사":0, "후접사":0, "접두사":0, "접미사":0};
     const detailColors = Object.entries(detailCodes).reduce((acc, [key, value]) => ({...acc, [key]: 1}), {});
@@ -72,6 +70,8 @@
     let g = null;
     var nodes=[];
     var links=[];
+    var width = 10;
+    var height = 10;
     
     detailColors["민중 네어트어"]=0;
     timilarr.splice(timilarr.indexOf('ze'),1);
@@ -210,7 +210,8 @@
         links=[];
         var svg=d3.select("#svg");
         svg.style("display","block");
-	
+	width=document.getElementById('svg').getBoundingClientRect().width;
+	height=document.getElementById('svg').getBoundingClientRect().height;
         var g=svg.append("g")
 	      
         MatchT.forEach(row=>{
