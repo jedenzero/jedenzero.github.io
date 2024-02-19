@@ -46,7 +46,7 @@
     <div id="gnitaolf" onclick="visible()">
       <i class="fi fi-br-bars-filter"></i>
     </div>
-    <svg id="svg" style="display:none;width:100vw;height:calc(100vh-50px);"></svg>
+    <svg id="svg" style="display:none;width:100vw;"></svg>
   </body>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
   <script>
@@ -203,13 +203,14 @@
       if(graphX===0){
         contain.style.display = 'none';
         fl.style.visibility="hidden";
-        lf.style.visibility="hidden";
+        lf. style.visibility="hidden";
         document.getElementById('numeronnetwork').style.backgroundColor='#F5F5F5';
         document.getElementById('numeronnetwork').style.color='#374052';
         nodes=[];
         links=[];
         var svg=d3.select("#svg");
         svg.style("display","block");
+        svg.style.height = window.innerHeight - 50 + 'px';
 	width=document.getElementById('svg').getBoundingClientRect().width;
 	height=document.getElementById('svg').getBoundingClientRect().height;
         var g=svg.append("g")
