@@ -11,6 +11,7 @@ body{
      background-color:#FAFAFA;
      word-break:keep-all;
      line-height:150%;
+     -ms-overflow-style:none;
 }
 .header{
      position:sticky;
