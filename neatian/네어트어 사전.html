@@ -46,7 +46,7 @@
     <div id="gnitaolf" onclick="visible()">
       <i class="fi fi-br-bars-filter"></i>
     </div>
-    <svg id="svg" style="overflow:scroll;display:none;width:100vw;"></svg>
+    <svg id="svg" style="display:none;width:100vw;"></svg>
   </body>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
   <script>
@@ -79,7 +79,7 @@
     function search() {
       const keyword = input.value;
 
-      fetch('https://sheets.googleapis.com/v4/spreadsheets/13LICoyhYt4Do9R24ktfoDpSDFxhHKpO-r44P3ROTJZQ/values/ne!A:E?key=AIzaSyATLeHQh6kM0LWRJjLg8CmzoSdnntFrmFk')
+      fetch('https://sheets.googleapis.com/v4/spreadsheets/13LICoyhYt4Do9R24ktfoDpSDFxhHKpO-r44P3ROTJZQ/values/ne!A:F?key=AIzaSyATLeHQh6kM0LWRJjLg8CmzoSdnntFrmFk')
       .then(response => response.json())
       .then(data => {
         let Match = data.values.filter(row=>row[0].includes(keyword)||row[2].includes(keyword));
@@ -107,10 +107,9 @@
       const derive=[];
       div.className='word';
       
-      if(data.values.findIndex(row=>row===dat)===0||dat[0]!==data.values[data.values.findIndex(row=>row===dat)-1][0]){
-      div.innerHTML+='<h2 style="display:inline-block;margin-bottom:0;"><b>'+dat[0]+'</b>';
+      div.innerHTML+='<sup style="display:inline-block;">'+dat[5]+'</sup>'+'<h2 style="display:inline-block;margin-bottom:0;"><b>'+dat[0]+'</b>';
       div.innerHTML+='</h2><div style="display:inline-block;margin-left:5px;" onclick="agraph('+dat+')"><i class="fi fi-br-chart-network"></i></div>';
-  	  if (dat[4]){
+  	if (dat[4]){
         div.innerHTML+='<div style="margin:0;padding:0;">'
         if(dat[4].indexOf('/')==-1){
             div.innerHTML+='<div style="display:inline-block;" onclick="go(this)">'+dat[4].split(', ')[0]+'</div>'
@@ -125,14 +124,12 @@
         }
         div.innerHTML+='</div>'
       }
-      }
       div.innerHTML+='<p>'
   	  div.innerHTML+=dat[1].slice(1)+'<br>';
   	  if (dat[3]!=="ze"){
         div.innerHTML+='['+detailNames[dat[3]]+'] '
       }
       div.innerHTML+=dat[2];
-      if(data.values.findIndex(row=>row===dat)+1===dataT.length||dat[0]!==data.values[data.values.findIndex(row=>row===dat)+1][0]){
   	  data.values.map(row => {
         if (row.length > 4) {
           return row[4];
@@ -151,7 +148,6 @@
       		div.innerHTML+='<li onclick="go(this)">'+el+'</li>'
       	 });
       	 div.innerHTML+='</ul>'
-      }
       }
   	  div.innerHTML+='</p>'
       output.appendChild (div);
