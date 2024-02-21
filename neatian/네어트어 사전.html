@@ -107,14 +107,14 @@
       const derive=[];
       div.className='word';
       
-      div.innerHTML+='<sup style="display:inline-block;">'+dat[5]+'</sup>'+'<h2 style="display:inline-block;margin-bottom:0;"><b>'+dat[0]+'</b>';
+      div.innerHTML+='<sup style="display:inline-block;">'+dat[4]+'</sup>'+'<h2 style="display:inline-block;margin-bottom:0;"><b>'+dat[0]+'</b>';
       div.innerHTML+='</h2><div style="display:inline-block;margin-left:5px;" onclick="agraph('+dat+')"><i class="fi fi-br-chart-network"></i></div>';
-  	if (dat[4]){
+  	if (dat[5]){
         div.innerHTML+='<div style="margin:0;padding:0;">'
-        if(dat[4].indexOf('/')==-1){
-            div.innerHTML+='<div style="display:inline-block;" onclick="go(this)">'+dat[4].split(', ')[0]+'</div>'
-            if(dat[4].split(', ')[1]){
-              dat[4].split(', ').slice(1).forEach(el=>{
+        if(dat[5].indexOf('/')==-1){
+            div.innerHTML+='<div style="display:inline-block;" onclick="go(this)">'+dat[5].split(', ')[0]+'</div>'
+            if(dat[5].split(', ')[1]){
+              dat[5].split(', ').slice(1).forEach(el=>{
                 div.innerHTML+='<div style="display:inline-block;margin-left:2px;margin-right:2px;">+</div><div style="display:inline-block;" onclick="go(this)">'+el+'</div>'
               });
             }
@@ -130,22 +130,22 @@
         div.innerHTML+='['+detailNames[dat[3]]+'] '
       }
       div.innerHTML+=dat[2];
-  	  data.values.map(row => {
-        if (row.length > 4) {
-          return row[4];
+      data.values.map(row => {
+        if (row.length > 5) {
+          return row;
         }
   	    else {
           return null;
         }
       }).forEach(el => {
-        if (el&&el.split(', ').includes(dat[0])&&el.indexOf('/')!==0) {
-          derive.push(data.values[data.values.map(row=>row[4]).indexOf(el)][0]);
+        if (el&&(el[5].split(', ').includes(dat[4])||el[5].slice(1)===dat[4]) {
+          derive.push(el[0]);
         }
       });
   	  if (derive.length!==0){
-  	    div.innerHTML+='<h4>합성어/파생어</h4><ul>'
+  	    div.innerHTML+='<h4>자식 노드</h4><ul>'
         derive.forEach(el=>{
-      		div.innerHTML+='<li onclick="go(this)">'+el+'</li>'
+      		div.innerHTML+='<li onclick="go(this)">'+el[0]+'</li>'
       	 });
       	 div.innerHTML+='</ul>'
       }
