@@ -307,7 +307,9 @@
 	node.call(drag);
       }
       else{
-        svg.innerHTML='';
+        while (svg.firstChild) {
+  	  svg.removeChild(svg.firstChild);
+	}
         contain.style.display = 'block';
         svg.style("display","none");
         fl.style.visibility="hidden";
