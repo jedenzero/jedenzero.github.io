@@ -307,9 +307,7 @@
 	node.call(drag);
       }
       else{
-        while (svg.firstChild) {
-  	  svg.removeChild(svg.firstChild);
-	}
+        svg.selectAll("*").remove();
         contain.style.display = 'block';
         svg.style("display","none");
         fl.style.visibility="hidden";
