@@ -72,6 +72,7 @@
     var links=[];
     var width = 10;
     var height = 10;
+    var svg=d3.select("#svg");
     
     detailColors["민중 네어트어"]=0;
     timilarr.splice(timilarr.indexOf('ze'),1);
@@ -204,7 +205,6 @@
         document.getElementById('numeronnetwork').style.color='#374052';
         nodes=[];
         links=[];
-        var svg=d3.select("#svg");
         svg.style("display","block");
         svg.style("height", window.innerHeight - 50 + 'px');
 	width=document.getElementById('svg').getBoundingClientRect().width;
