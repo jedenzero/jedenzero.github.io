@@ -54,6 +54,7 @@
 	row.push(0);
 	return row;
       });
+      setting();
     })
     .catch(error=>console.error('Error:',error));
     
@@ -64,12 +65,13 @@
 	row.push(1);
 	return row;
       });
+      detail[0][2]=0;
+      setting();
     })
     .catch(error=>console.error('Error:',error));
     
-    detail[0][2]=0;
-    
     //품사 및 세부 범위제한 부분
+    function setting(){
     document.getElementById("floating").innerHTML='';
     part.forEach(row=>{
       document.getElementById("floating").innerHTML+='<h2 style="text-align:center;">범위 제한</h2><h3>품사</h3><div class="limit" onclick="limit(this)">'+row[0]+'</div>';
@@ -78,7 +80,7 @@
       document.getElementById("floating").innerHTML+='<h3>세부 분류</h3><div class="timil" onclick="timil(this)">'+row[0]+'</div>';
     });
     document.getElementById("floating").innerHTML+='<div style="text-align:center;margin-top:10px;"><i class="fi fi-br-cross" onclick="visible()"></i></div>'
-
+    }
 	  
   /*const contain = document.getElementById('contain');
     const input = document.getElementById('search');
