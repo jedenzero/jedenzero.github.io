@@ -50,7 +50,45 @@
   </body>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
   <script>
-    const contain = document.getElementById('contain');
+    var lang='ne'
+    var limitX=0;
+    var graphX=0;
+    var dataS=[];
+    var dataA=[];
+    var part=[];
+    var detail=[];
+    fetch('https://sheets.googleapis.com/v4/spreadsheets/13LICoyhYt4Do9R24ktfoDpSDFxhHKpO-r44P3ROTJZQ/values/'+lang+'!A:F?key=AIzaSyATLeHQh6kM0LWRJjLg8CmzoSdnntFrmFk')
+    .then(response=>response.json)
+    .then(data=>{
+      dataS=data.values;
+    })
+    .catch(error=>console.error('Error:',error));
+    
+    fetch('https://sheets.googleapis.com/v4/spreadsheets/13LICoyhYt4Do9R24ktfoDpSDFxhHKpO-r44P3ROTJZQ/values/'+lang+'!G:G?key=AIzaSyATLeHQh6kM0LWRJjLg8CmzoSdnntFrmFk')
+    .then(response=>response.json)
+    .then(data=>{
+      part=data.values.map(row=>row.push(0));
+    })
+    .catch(error=>console.error('Error:',error));
+    
+    fetch('https://sheets.googleapis.com/v4/spreadsheets/13LICoyhYt4Do9R24ktfoDpSDFxhHKpO-r44P3ROTJZQ/values/'+lang+'!H:I?key=AIzaSyATLeHQh6kM0LWRJjLg8CmzoSdnntFrmFk')
+    .then(response=>response.json)
+    .then(data=>{
+      detail=data.values.map(row=>row.push(1));
+    })
+    .catch(error=>console.error('Error:',error));
+    
+    detail[0][2]=0;
+    
+    //품사 및 세부 범위제한 부분
+    document.getElementById("floating").innerHTML='';
+    part.forEach(row=>{
+      document.getElementById("floating").innerHTML+='<h2 style="text-align:center;">범위 제한</h2><h3>품사</h3><div class="limit" onclick="limit(this)">'+row[0]+'</div>';
+    });
+    detail.forEach(row=>{
+      document.getElementById("floating").innerHTML+='<h3>세부 분류</h3><div class="timil" onclick="timil(this)">'+row[0]+'</div>';
+    });
+  /*const contain = document.getElementById('contain');
     const input = document.getElementById('search');
     const output = document.getElementById('output');
     const totalAmount = document.getElementById('total_amount');
@@ -162,7 +200,7 @@
     function go(element){
       input.value=element.innerText;
       search();
-    }
+    }*/
     function limit(element){
       if (partColors[element.innerText]===0){
         element.style.backgroundColor="#F5F5F5";
