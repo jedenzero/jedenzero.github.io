@@ -57,6 +57,7 @@
     const searchAmount = document.getElementById('search_amount');
     const fl = document.getElementById('floating');
     const lf = document.getElementById('gnitaolf');
+
     const detailCodes = {"초기 네어트어":"γo", "민중 네어트어":"ze", "예타뷔스 방언":"je"};
     const partColors = {"명사":0, "동사":0, "조사":0, "부사":0, "접속사":0, "전접사":0, "후접사":0, "접두사":0, "접미사":0};
     const detailColors = Object.entries(detailCodes).reduce((acc, [key, value]) => ({...acc, [key]: 1}), {});
@@ -110,18 +111,26 @@
       
       div.innerHTML+='<sup style="display:inline-block;">'+dat[4]+'</sup>'+'<h2 style="display:inline-block;margin-bottom:0;"><b>'+dat[0]+'</b>';
       div.innerHTML+='</h2><div style="display:inline-block;margin-left:5px;" onclick="agraph({'+dat+'})"><i class="fi fi-br-chart-network"></i></div>';
-  	if (dat[5]){
+      if (dat[5]){
         div.innerHTML+='<div style="margin:0;padding:0;">'
-        if(dat[5].indexOf('/')==-1){
-            div.innerHTML+='<sup style="display:inline-block;"><small>'+(dataT.find(row=>row[4]===dat[5].split(', ')[0])||[])[4]+'</small></sup><div style="display:inline-block;" onclick="go(this)">'+(dataT.find(row=>row[4]===dat[5].split(', ')[0])||[])[0]+'</div>'
-            if(dat[5].split(', ')[1]){
-              dat[5].split(', ').slice(1).forEach(el=>{
-                div.innerHTML+='<div style="display:inline-block;margin-left:2px;margin-right:2px;">+</div>'+'<sup style="display:inline-block;"><small>'+(dataT.find(row=>row[4]===el)||[])[4]+'</small></sup><div style="display:inline-block;" onclick="go(this)">'+(dataT.find(row=>row[4]===el)||[])[0]+'</div>'
-              });
-            }
-        }
-        else{
-          div.innerHTML+='<div style="display:inline-block;">&lt;</div>'+'<sup style="display:inline-block;"><small>'+(dataT.find(row=>row[4]===dat[5].slice(1))||[])[4]+'</small></sup>'+'<div style="display:inline-block;" onclick="go(this)">'+dataT.find(row=>row[4]===dat[5].slice(1))[0]+'</div>'
+        if(dat[5].indexOf('/')!=-1){
+		div.innerHTML+='<div style="display:inline-block;">&lt;</div>';
+	}
+        div.innerHTML+='<sup style="display:inline-block;"><small>'+(dataT.find(row=>row[4]===dat[5].split(', ')[0])||[])[4]+'</small></sup><div style="display:inline-block;" onclick="go(this)">'+(dataT.find(row=>row[4]===dat[5].split(', ')[0])||[])[0]+'</div>'
+        if(dat[5].split(', ')[1]){
+        dat[5].split(', ').slice(1).forEach(el=>{
+		if(el.split('=')[1]){
+			fetch('https://sheets.googleapis.com/v4/spreadsheets/13LICoyhYt4Do9R24ktfoDpSDFxhHKpO-r44P3ROTJZQ/values/'+el.split('=')[1]+'!A:F?key=AIzaSyATLeHQh6kM0LWRJjLg8CmzoSdnntFrmFk')
+      			.then(response => response.json())
+      			.then(data => {
+				div.innerHTML+='<div style="display:inline-block;margin-left:2px;margin-right:2px;">+</div>'+'<sup style="display:inline-block;"><small>'+el.split('=')[0]+'</small></sup><div style="display:inline-block;">'+(data.values.find(row=>row[4]===el||[])[0]+'</div>'
+			}
+			.catch(error => console.error('Error:', error));
+		}
+		else{
+        	div.innerHTML+='<div style="display:inline-block;margin-left:2px;margin-right:2px;">+</div>'+'<sup style="display:inline-block;"><small>'+(dataT.find(row=>row[4]===el)||[])[4]+'</small></sup><div style="display:inline-block;" onclick="go(this)">'+(dataT.find(row=>row[4]===el)||[])[0]+'</div>'
+		}	
+	});
         }
         div.innerHTML+='</div>'
       }
