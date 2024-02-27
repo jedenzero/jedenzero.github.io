@@ -50,7 +50,7 @@
     .then(response=>response.json)
     .then(data=>{
       part=data.values.map(row=>{
-	row.push(0);
+	row=row.push(0);
 	return row;
       });
       setting();
@@ -61,7 +61,7 @@
     .then(response=>response.json)
     .then(data=>{
       detail=data.values.map(row=>{
-	row.push(1);
+	row=row.push(1);
 	return row;
       });
       detail[0][2]=0;
