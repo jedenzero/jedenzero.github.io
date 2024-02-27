@@ -43,7 +43,7 @@
     .then(response=>response.json)
     .then(data=>{
 	dataS=data.values;
-      });
+    })
     .catch(error=>console.error('Error:',error));
     
     fetch('https://sheets.googleapis.com/v4/spreadsheets/13LICoyhYt4Do9R24ktfoDpSDFxhHKpO-r44P3ROTJZQ/values/'+lang+'!G:G?key=AIzaSyATLeHQh6kM0LWRJjLg8CmzoSdnntFrmFk')
