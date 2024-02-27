@@ -24,24 +24,6 @@
     <div style="height:100px;"></div>
     </div>
     <div id="floating">
-      <h2 style="text-align:center;">범위 제한</h2>
-      <h3>품사</h3>
-      <div class="limit" onclick="limit(this)">명사</div>
-      <div class="limit" onclick="limit(this)">동사</div>
-      <div class="limit" onclick="limit(this)">조사</div>
-      <div class="limit" onclick="limit(this)">부사</div>
-      <div class="limit" onclick="limit(this)">접속사</div>
-      <div class="limit" onclick="limit(this)">전접사</div>
-      <div class="limit" onclick="limit(this)">후접사</div>
-      <div class="limit" onclick="limit(this)">접두사</div>
-      <div class="limit" onclick="limit(this)">접미사</div>
-      <h3>세부 분류</h3>
-      <div class="timil" onclick="timil(this)">초기 네어트어</div>
-      <div class="limit" onclick="timil(this)">민중 네어트어</div>
-      <div class="timil" onclick="timil(this)">예타뷔스 방언</div>
-      <div style="text-align:center;margin-top:10px;">
-        <i class="fi fi-br-cross" onclick="visible()"></i>
-      </div>
     </div>
     <div id="gnitaolf" onclick="visible()">
       <i class="fi fi-br-bars-filter"></i>
@@ -60,21 +42,28 @@
     fetch('https://sheets.googleapis.com/v4/spreadsheets/13LICoyhYt4Do9R24ktfoDpSDFxhHKpO-r44P3ROTJZQ/values/'+lang+'!A:F?key=AIzaSyATLeHQh6kM0LWRJjLg8CmzoSdnntFrmFk')
     .then(response=>response.json)
     .then(data=>{
-      dataS=data.values;
+	dataS=data.values;
+      });
     })
     .catch(error=>console.error('Error:',error));
     
     fetch('https://sheets.googleapis.com/v4/spreadsheets/13LICoyhYt4Do9R24ktfoDpSDFxhHKpO-r44P3ROTJZQ/values/'+lang+'!G:G?key=AIzaSyATLeHQh6kM0LWRJjLg8CmzoSdnntFrmFk')
     .then(response=>response.json)
     .then(data=>{
-      part=data.values.map(row=>row.push(0));
+      part=data.values.map(row=>{
+	row.push(0);
+	return row;
+      });
     })
     .catch(error=>console.error('Error:',error));
     
     fetch('https://sheets.googleapis.com/v4/spreadsheets/13LICoyhYt4Do9R24ktfoDpSDFxhHKpO-r44P3ROTJZQ/values/'+lang+'!H:I?key=AIzaSyATLeHQh6kM0LWRJjLg8CmzoSdnntFrmFk')
     .then(response=>response.json)
     .then(data=>{
-      detail=data.values.map(row=>row.push(1));
+      detail=data.values.map(row=>{
+	row.push(1);
+	return row;
+      });
     })
     .catch(error=>console.error('Error:',error));
     
@@ -88,6 +77,9 @@
     detail.forEach(row=>{
       document.getElementById("floating").innerHTML+='<h3>세부 분류</h3><div class="timil" onclick="timil(this)">'+row[0]+'</div>';
     });
+    document.getElementById("floating").innerHTML+='<div style="text-align:center;margin-top:10px;"><i class="fi fi-br-cross" onclick="visible()"></i></div>'
+
+	  
   /*const contain = document.getElementById('contain');
     const input = document.getElementById('search');
     const output = document.getElementById('output');
