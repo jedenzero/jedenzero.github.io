@@ -17,7 +17,7 @@
     <div class="contain" id="contain" style="width:260px;">
     <p id="total_amount"></p>
     <div class="underline" id="underline">
-      <input type="text" id="search" onkeyup="search(this)">
+      <input type="text" id="search" onkeyup="search()">
     </div>
     <p id="search_amount"></p>
     <div id="output"></div>
@@ -106,8 +106,8 @@
     }
 
     //검색
-    function search(element){
-	var input=element.value;
+    function search(){
+	var input=document.getElementById('search').value;
     	match=dataS.filter(row=>row[0].includes(input.toLowerCase())||row[2].includes(input));
 	match=match.filter(row=>!limit.includes(row[1])&&limit.includes(row[3]));
 
