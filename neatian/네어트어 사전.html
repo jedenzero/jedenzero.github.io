@@ -41,12 +41,13 @@
     var part=[];
     var detail=[];
     var limit=[];
+    Promise.all([
     fetch('https://sheets.googleapis.com/v4/spreadsheets/13LICoyhYt4Do9R24ktfoDpSDFxhHKpO-r44P3ROTJZQ/values/'+lang+'!A:F?key=AIzaSyATLeHQh6kM0LWRJjLg8CmzoSdnntFrmFk')
     .then(response=>response.json())
     .then(data=>{
 	dataS=data.values;
     })
-    .catch(error=>console.error('Error:',error));
+    .catch(error=>console.error('Error:',error)),
     
     fetch('https://sheets.googleapis.com/v4/spreadsheets/13LICoyhYt4Do9R24ktfoDpSDFxhHKpO-r44P3ROTJZQ/values/'+lang+'!G:G?key=AIzaSyATLeHQh6kM0LWRJjLg8CmzoSdnntFrmFk')
     .then(response=>response.json())
@@ -55,12 +56,8 @@
 	row.push(0);
 	return row;
       });
-      setting();
-      limitSetting();
-      //단어수 표시
-      document.getElementById('total_amount').innerHTML='현재 총 단어 : '+dataS.length+'개';
     })
-    .catch(error=>console.error('Error:',error));
+    .catch(error=>console.error('Error:',error)),
     
     fetch('https://sheets.googleapis.com/v4/spreadsheets/13LICoyhYt4Do9R24ktfoDpSDFxhHKpO-r44P3ROTJZQ/values/'+lang+'!H:I?key=AIzaSyATLeHQh6kM0LWRJjLg8CmzoSdnntFrmFk')
     .then(response=>response.json())
@@ -75,13 +72,14 @@
 	}
 	return row;
       });
-      setting();
-      limitSetting();
-      //단어수 표시
-      document.getElementById('total_amount').innerHTML='현재 총 단어 : '+dataS.length+'개';
     })
-    .catch(error=>console.error('Error:',error));
-    
+    .catch(error=>console.error('Error:',error))
+    ]).then(result=>{
+	setting();
+      	limitSetting();
+	//단어수 표시
+      	document.getElementById('total_amount').innerHTML='현재 총 단어 : '+dataS.length+'개';
+    })
     //품사 및 세부 범위제한 부분
     function setting(){
     document.getElementById("floating").innerHTML='';
