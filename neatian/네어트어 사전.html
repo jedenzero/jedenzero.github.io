@@ -105,11 +105,15 @@
 	});
     }
 
+    //단어수 표시
+    document.getElementById('total_amount').innerHTML='현재 총 단어 :'+dataS.length+'개';
+    
     //검색
     function search(){
 	var input=document.getElementById('search').value;
     	match=dataS.filter(row=>row[0].includes(input.toLowerCase())||row[2].includes(input));
 	match=match.filter(row=>!limit.includes(row[1])&&limit.includes(row[3]));
+	document.getElementById('total_amount').innerHTML='검색 결과 :'+match.length+'개';
 
 	var matchE=match.filter(row=>row[0]===input||row[2].split(', ').includes(input)); //match equal or exact
 	var matchS=match.filter(row=>row[0].startsWith(input)||row[2].split(', ').find(el=>el.startsWith(input))); //match start
@@ -239,7 +243,7 @@
     function go(element){
       input.value=element.innerText;
       search();
-    }*/
+    }
     function limit(element){
       if (partColors[element.innerText]===0){
         element.style.backgroundColor="#F5F5F5";
@@ -458,8 +462,7 @@
     function agraph(element){
       MatchT=[element];
       graph();
-    }
+    }*/
     search();
-    visible();
   </script>
 </html>
