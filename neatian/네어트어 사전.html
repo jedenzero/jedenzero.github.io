@@ -79,25 +79,13 @@
     document.getElementById("floating").innerHTML='';
     document.getElementById("floating").innerHTML+='<h2 style="text-align:center;">범위 제한</h2><h3>품사</h3>';
     part.forEach(row=>{
-      document.getElementById("floating").innerHTML+='<div ';
-      if(row[1]===0){
-      document.getElementById("floating").innerHTML+='class="limit" ';
-      }
-      else{
-      document.getElementById("floating").innerHTML+='class="timil" ';
-      }
-      document.getElementById("floating").innerHTML+='onclick="limit(this)">'+row[0]+'</div>';
+      var className=row[1]===0 ? 'limit' : 'timil';
+      document.getElementById("floating").innerHTML+='<div class="'+className+'" onclick="limit(this)">'+row[0]+'</div>';
     });
     document.getElementById("floating").innerHTML+='<h3>세부 분류</h3>';
     detail.forEach(row=>{
-      document.getElementById("floating").innerHTML+='<div ';
-      if(row[2]===0){
-      document.getElementById("floating").innerHTML+='class="limit" ';
-      }
-      else{
-      document.getElementById("floating").innerHTML+='class="timil" ';
-      }
-      document.getElementById("floating").innerHTML+='onclick="limit(this)">'+row[0]+'</div>';
+      var className=row[1]===0 ? 'limit' : 'timil';
+      document.getElementById("floating").innerHTML+='<div class="'+className+'" onclick="limit(this)">'+row[0]+'</div>';
     });
     document.getElementById("floating").innerHTML+='<div style="text-align:center;margin-top:10px;"><i class="fi fi-br-cross" onclick="visible()"></i></div>';
     }
