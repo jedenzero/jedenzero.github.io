@@ -61,10 +61,15 @@
     .then(response=>response.json())
     .then(data=>{
       detail=data.values.map(row=>{
-	row.push(1);
+	if(row[1].includes('!')){
+		row[1].replace('!','');
+		row.push(0);
+	}
+	else{
+		row.push(1);
+	}
 	return row;
       });
-      detail[0][2]=0;
       setting();
     })
     .catch(error=>console.error('Error:',error));
@@ -74,11 +79,18 @@
     document.getElementById("floating").innerHTML='';
     document.getElementById("floating").innerHTML+='<h2 style="text-align:center;">범위 제한</h2><h3>품사</h3>';
     part.forEach(row=>{
-      document.getElementById("floating").innerHTML+='<div class="limit" onclick="limit(this)">'+row[0]+'</div>';
+      document.getElementById("floating").innerHTML+='<div ';
+      if(row[2]===0){
+      document.getElementById("floating").innerHTML+='class="limit" ';
+      }
+      else{
+      document.getElementById("floating").innerHTML+='class="timil" ';
+      }
+      document.getElementById("floating").innerHTML+='onclick="limit(this)">'+row[0]+'</div>';
     });
     document.getElementById("floating").innerHTML+='<h3>세부 분류</h3>';
     detail.forEach(row=>{
-      document.getElementById("floating").innerHTML+='<div class="timil" onclick="timil(this)">'+row[0]+'</div>';
+      document.getElementById("floating").innerHTML+='<div class="limit" onclick="limit(this)">'+row[0]+'</div>';
     });
     document.getElementById("floating").innerHTML+='<div style="text-align:center;margin-top:10px;"><i class="fi fi-br-cross" onclick="visible()"></i></div>';
     }
