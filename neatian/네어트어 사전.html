@@ -96,6 +96,7 @@
 
     //범위 제한 설정
     function limitSetting(){
+	limit=[];
 	part.filter(row=>row[1]===1).forEach(row=>{
 	   limit.push(row[0]);
 	});
@@ -106,8 +107,13 @@
 
     //검색
     function search(element){
-    	match=dataT.filter(row=>row[0].includes(element.innerText.toLowerCase())||row[2].includes(element.innerText));
+	var input=element.innerText;
+    	match=dataS.filter(row=>row[0].includes(input.toLowerCase())||row[2].includes(input));
 	match=match.filter(row=>!limit.includes(row[1])&&limit.includes(row[3]));
+
+	var matchE=match.filter(row=>row[0]===input||row[2].split(', ').includes(input)); //match equal or exact
+	var matchS=match.filter(row=>row[0].startsWith(input)||row[2].split(', ').find(el=>el.startsWith(input))); //match start
+	var matchO=match.filter(row=>!matchE.indcludes(row)&&!matchS.includes(row));
     }
   /*const contain = document.getElementById('contain');
     const input = document.getElementById('search');
