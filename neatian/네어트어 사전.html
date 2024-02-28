@@ -122,9 +122,9 @@
 
     function addBox(row){
 	var div=document.createElement('div');
-	div.classnName='word';
-	div.textContent+='<sup class="id">'+row[4]+'</sup>'; //id 추가
-	div.textContent+='<h2 style="display:inline-block;">'+row[0]+'</h2>' //단어 추가
+	div.className='word';
+	div.innerHTML+='<sup class="id">'+row[4]+'</sup>'; //id 추가
+	div.innerHTML+='<h2 style="display:inline-block;">'+row[0]+'</h2>' //단어 추가
 	document.getElementById('output').appendChild(div);
     }
   /*const contain = document.getElementById('contain');
