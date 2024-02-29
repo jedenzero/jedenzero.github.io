@@ -161,6 +161,7 @@
       	var origin=data.values.find(row2=>row2[4]===el.split('=')[0]).push(el.split('=')[1]);
 	dataA.push(origin);
 	div.innerHTML+='<sup><small>'+el.split('=')[0]+'</small></sup>'+'<p style="display:inline-block;">'+origin[0]+'('+langs.find(row=>row[0]===el.split('=')[1])[1]+')'+'</p>';
+	}
 	//외래어 아님
 	else{
 	var origin=dataS.find(row2=>row2[4]===el);
