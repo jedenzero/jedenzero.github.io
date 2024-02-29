@@ -157,7 +157,7 @@
 	}
 	//외래어
 	if(el.includes('=')){
-	fetch('https://sheets.googleapis.com/v4/spreadsheets/13LICoyhYt4Do9R24ktfoDpSDFxhHKpO-r44P3ROTJZQ/values/'+el.split('=')[1]+'!H:I?key=AIzaSyATLeHQh6kM0LWRJjLg8CmzoSdnntFrmFk')
+	fetch('https://sheets.googleapis.com/v4/spreadsheets/13LICoyhYt4Do9R24ktfoDpSDFxhHKpO-r44P3ROTJZQ/values/'+el.split('=')[1]+'!A:F?key=AIzaSyATLeHQh6kM0LWRJjLg8CmzoSdnntFrmFk')
     	.then(response=>response.json())
 	.then(data=>{
       	var origin=data.values.find(row2=>row2[4]===el.split('=')[0]).push(el.split('=')[1]);
@@ -178,7 +178,7 @@
 	div.innerHTML+='<p>';
 	//세부 분류 추가
 	if(row[3]!=dialect){
-	div.innerHTML+='['+row[3]+'] ';
+	div.innerHTML+='['+detail.find(row2=>row2[1]===row[3])[0]+'] ';
 	}
 	div.innerHTML+=row[2]+'</p>';
 	document.getElementById('output').appendChild(div);
