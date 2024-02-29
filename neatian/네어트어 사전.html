@@ -14,8 +14,11 @@
         <i class="fi fi-br-chart-network"></i>
       </div>
     </div>
+    <div>
+	<h1 style="text-align:center;">Yvečižal!</h1>
+	<p id="total_amount" style="text-align:center;padding-left:50px;padding-right:50px;">
+    </div>
     <div class="contain" id="contain" style="width:260px;">
-    <p id="total_amount"></p>
     <div class="underline" id="underline">
       <input type="text" id="search" onkeyup="search()">
     </div>
@@ -41,6 +44,8 @@
     var part=[];
     var detail=[];
     var limit=[];
+    //데이터 다시 불러오기
+    function resetLang(){
     Promise.all([
     fetch('https://sheets.googleapis.com/v4/spreadsheets/13LICoyhYt4Do9R24ktfoDpSDFxhHKpO-r44P3ROTJZQ/values/'+lang+'!A:F?key=AIzaSyATLeHQh6kM0LWRJjLg8CmzoSdnntFrmFk')
     .then(response=>response.json())
@@ -78,8 +83,9 @@
 	setting();
       	limitSetting();
 	//단어수 표시
-      	document.getElementById('total_amount').innerHTML='현재 총 단어 : '+dataS.length+'개';
+      	document.getElementById('total_amount').innerHTML='네어트어 사전에 오신 것을 환영합니다. 현재 단어수는 총 '+dataS.length+'개입니다.';
     })
+    }
     //품사 및 세부 범위제한 부분
     function setting(){
     document.getElementById("floating").innerHTML='';
@@ -103,7 +109,7 @@
 	   limit.push(row[0]);
 	});
 	detail.filter(row=>row[2]===1).forEach(row=>{
-	   limit.push(row[0]);
+	   limit.push(row[1]);
 	});
     }
     
@@ -132,6 +138,7 @@
 	div.innerHTML+='<h2 style="display:inline-block;">'+row[0]+'</h2>' //단어 추가
 	document.getElementById('output').appendChild(div);
     }
+    resetLang();
   /*const contain = document.getElementById('contain');
     const input = document.getElementById('search');
     const output = document.getElementById('output');
