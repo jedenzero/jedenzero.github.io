@@ -71,7 +71,7 @@
     .then(data=>{
       detail=data.values.map(row=>{
 	if(row[1].includes('!')){
-		row[1].replace('!','');
+		row[1]=row[1].replace('!','');
 		dialect=row[1];
 		row.push(0);
 	}
@@ -142,7 +142,7 @@
 	matchO.forEach(row=>{addBox(row)});
     }
 
-    function addBox(row){
+    async function addBox(row){
 	var div=document.createElement('div');
 	div.className='word';
 	div.innerHTML+='<sup class="id">'+row[4]+'</sup>'; //id 추가
@@ -157,15 +157,10 @@
 	}
 	//외래어
 	if(el.includes('=')){
-	fetch('https://sheets.googleapis.com/v4/spreadsheets/13LICoyhYt4Do9R24ktfoDpSDFxhHKpO-r44P3ROTJZQ/values/'+el.split('=')[1]+'!A:F?key=AIzaSyATLeHQh6kM0LWRJjLg8CmzoSdnntFrmFk')
-    	.then(response=>response.json())
-	.then(data=>{
+	var data=await fetch('https://sheets.googleapis.com/v4/spreadsheets/13LICoyhYt4Do9R24ktfoDpSDFxhHKpO-r44P3ROTJZQ/values/'+el.split('=')[1]+'!A:F?key=AIzaSyATLeHQh6kM0LWRJjLg8CmzoSdnntFrmFk').then(response=>response.json());
       	var origin=data.values.find(row2=>row2[4]===el.split('=')[0]).push(el.split('=')[1]);
 	dataA.push(origin);
 	div.innerHTML+='<sup><small>'+el.split('=')[0]+'</small></sup>'+'<p style="display:inline-block;">'+origin[0]+'('+langs.find(row=>row[0]===el.split('=')[1])[1]+')'+'</p>';
-    	})
-    	.catch(error=>console.error('Error:',error))
-	}
 	//외래어 아님
 	else{
 	var origin=dataS.find(row2=>row2[4]===el);
