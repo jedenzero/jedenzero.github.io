@@ -136,6 +136,25 @@
 	div.className='word';
 	div.innerHTML+='<sup class="id">'+row[4]+'</sup>'; //id 추가
 	div.innerHTML+='<h2 style="display:inline-block;">'+row[0]+'</h2>' //단어 추가
+	if(row[5]){
+	div.innerHTML+='<div>'
+	row[5].split(', ').forEach(el=>{
+	//더하기 추가
+	if(row[5].split(', ').indexOf(el)!=0){
+	div.innerHTML+='<p style="display:inline-block;"> + </p>';
+	}
+	//외래어
+	if(el.includes('=')){
+	
+	}
+	//외래어 아님
+	else{
+	var origin=dataS.find(row2=>row2[4]===el);
+	div.innerHTML+='<p style="display:inline-block;" onclick="getElementById('search').innerHTML='+origin[0]+';search();'+'">'+origin[0]+'</p>';
+	}
+	})
+	div.innerHTML+='</div>'
+	}
 	document.getElementById('output').appendChild(div);
     }
     resetLang();
