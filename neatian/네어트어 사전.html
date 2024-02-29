@@ -26,7 +26,7 @@
     <div id="output"></div>
     <div style="height:100px;"></div>
     </div>
-    <div id="floating">
+    <div id="floating" style="visibility:hidden;">
     </div>
     <div id="gnitaolf" onclick="visible()">
       <i class="fi fi-br-bars-filter"></i>
@@ -150,7 +150,7 @@
 	//어원 추가
 	if(row[5]){
 	div.innerHTML+='<div>'
-	row[5].split(', ').forEach(el=>{
+	for(let el of row[5].split(', ')){
 	//더하기 추가
 	if(row[5].split(', ').indexOf(el)!=0){
 	div.innerHTML+='<p style="display:inline-block;"> + </p>';
@@ -177,6 +177,18 @@
 	}
 	div.innerHTML+=row[2]+'</p>';
 	document.getElementById('output').appendChild(div);
+    }
+    //범위 제한 부분 가리기/보이기
+    function visible(){
+	if(limitX===0){
+	document.getElementById('floating').style.visibility = 'visible';
+	document.getElementById('gnitaolf').style.visibility = 'hidden';
+	}
+	else{
+	document.getElementById('floating').style.visibility = 'hidden';
+	document.getElementById('gnitaolf').style.visibility = 'visible';
+	}
+	limitX=1-limitX;
     }
     resetLang();
   /*const contain = document.getElementById('contain');
