@@ -144,39 +144,42 @@
 
     async function addBox(row){
 	var div=document.createElement('div');
+	var divI=''; //div 임시
 	div.className='word';
-	div.innerHTML+='<sup class="id">'+row[4]+'</sup>'; //id 추가
-	div.innerHTML+='<h2 style="display:inline-block;margin-bottom:0;">'+row[0]+'</h2>' //단어 추가
+	divI+='<sup class="id">'+row[4]+'</sup>'; //id 추가
+	divI+='<h2 style="display:inline-block;margin-bottom:0;">'+row[0]+'</h2>' //단어 추가
 	//어원 추가
 	if(row[5]){
-	div.innerHTML+='<div>'
+	divI+='<div>'
 	for(let el of row[5].split(', ')){
 	//더하기 추가
 	if(row[5].split(', ').indexOf(el)!=0){
-	div.innerHTML+='<p style="display:inline-block;"> + </p>';
+	divI+='<p style="display:inline-block;"> + </p>';
 	}
 	//외래어
 	if(el.includes('=')){
 	var data=await fetch('https://sheets.googleapis.com/v4/spreadsheets/13LICoyhYt4Do9R24ktfoDpSDFxhHKpO-r44P3ROTJZQ/values/'+el.split('=')[1]+'!A:F?key=AIzaSyATLeHQh6kM0LWRJjLg8CmzoSdnntFrmFk').then(response=>response.json());
-      	var origin=data.values.find(row2=>row2[4]===el.split('=')[0]).push(el.split('=')[1]);
+      	var origin=data.values.find(row2=>row2[4]===el.split('=')[0]);
+	origin.push(el.split('=')[1]);
 	dataA.push(origin);
-	div.innerHTML+='<sup><small>'+el.split('=')[0]+'</small></sup>'+'<p style="display:inline-block;">'+origin[0]+'('+langs.find(row=>row[0]===el.split('=')[1])[1]+')'+'</p>';
+	divI+='<sup><small>'+el.split('=')[0]+'</small></sup>'+'<p style="display:inline-block;">'+origin[0]+'('+langs.find(row=>row[0]===el.split('=')[1])[1]+')'+'</p>';
 	}
 	//외래어 아님
 	else{
 	var origin=dataS.find(row2=>row2[4]===el);
-	div.innerHTML+='<sup><small>'+el+'</small></sup>'+'<p style="display:inline-block;" onclick="document.getElementById(\'search\').innerHTML='+origin[0]+';search();'+'">'+origin[0]+'</p>';
+	divI+='<sup><small>'+el+'</small></sup>'+'<p style="display:inline-block;" onclick="document.getElementById(\'search\').innerHTML='+origin[0]+';search();'+'">'+origin[0]+'</p>';
 	}
 	}
-	div.innerHTML+='</div>'
+	divI+='</div>'
 	}
 	//뜻 추가
-	div.innerHTML+='<p>';
+	divI+='<p>';
 	//세부 분류 추가
 	if(row[3]!=dialect){
-	div.innerHTML+='['+detail.find(row2=>row2[1]===row[3])[0]+'] ';
+	divI+='['+detail.find(row2=>row2[1]===row[3])[0]+'] ';
 	}
-	div.innerHTML+=row[2]+'</p>';
+	divI+=row[2]+'</p>';
+	div.innerHTML=divI;
 	document.getElementById('output').appendChild(div);
     }
     //범위 제한 부분 가리기/보이기
