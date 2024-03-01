@@ -42,7 +42,6 @@
     var graphX=0;
     var dataS=[];
     var dataA=[];
-    var dataI=[]; //dataA 임시
     var match=[];
     var part=[];
     var detail=[];
@@ -90,12 +89,29 @@
     })
     .catch(error=>console.error('Error:',error))
     ]).then(result=>{
-	setting();
-      	limitSetting();
-	//인사
-	document.getElementById('greet').innerHTML=langs.find(row=>row[0]===lang)[2];
-	//단어수 표시
-      	document.getElementById('total_amount').innerHTML=langs.find(row=>row[0]===lang)[1]+' 사전에 오신 것을 환영합니다. 현재 단어수는 총 '+dataS.length+'개입니다.';
+      setting();
+      limitSetting();
+      //인사
+      document.getElementById('greet').innerHTML=langs.find(row=>row[0]===lang)[2];
+      //단어수 표시
+      document.getElementById('total_amount').innerHTML=langs.find(row=>row[0]===lang)[1]+' 사전에 오신 것을 환영합니다. 현재 단어수는 총 '+dataS.length+'개입니다.';
+      for(let row of dataS){
+      if(row[5]){
+      for(let el of row[5].split(', ')){
+      if(el.includes('=')){
+      var imsi='';
+      fetch('https://sheets.googleapis.com/v4/spreadsheets/13LICoyhYt4Do9R24ktfoDpSDFxhHKpO-r44P3ROTJZQ/values/'+el.split('=')[1]+'!A:F?key=AIzaSyATLeHQh6kM0LWRJjLg8CmzoSdnntFrmFk')
+      .then(response=>response.json())
+      .then(dataout=>{
+      imsi=dataout.values.find(row2=>row2[4]===el.split('=')[0]);
+      imsi[4]=el;
+      dataA+=imsi;
+      })
+      .catch(error=>console.error('Error:',error))
+      }
+      }
+      }
+      }
     })
     }
     //품사 및 세부 범위제한 부분
@@ -160,15 +176,7 @@
 	}
 	//외래어
 	if(el.includes('=')){
-	var data=await fetch('https://sheets.googleapis.com/v4/spreadsheets/13LICoyhYt4Do9R24ktfoDpSDFxhHKpO-r44P3ROTJZQ/values/'+el.split('=')[1]+'!A:F?key=AIzaSyATLeHQh6kM0LWRJjLg8CmzoSdnntFrmFk').then(response=>response.json());
-  var origin=data.values.find(row2=>row2[4]===el.split('=')[0]);
-	origin.push(el.split('=')[1]);
-  if(dataI.some(row2=>JSON.stringify(row2)===JSON.stringify(origin))){
-  console.log("!중복!");
-  return;
-  }
-  dataA.push(origin);
-  dataI.push(origin);
+  var origin=dataA.find(row2=>row2[4]===el);
 	divI+='<sup><small>'+el.split('=')[0]+'</small></sup>'+'<p style="display:inline-block;">'+origin[0]+'('+langs.find(row=>row[0]===el.split('=')[1])[1]+')'+'</p>';
 	}
 	//외래어 아님
