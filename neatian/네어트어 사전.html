@@ -159,10 +159,12 @@
 	//외래어
 	if(el.includes('=')){
 	var data=await fetch('https://sheets.googleapis.com/v4/spreadsheets/13LICoyhYt4Do9R24ktfoDpSDFxhHKpO-r44P3ROTJZQ/values/'+el.split('=')[1]+'!A:F?key=AIzaSyATLeHQh6kM0LWRJjLg8CmzoSdnntFrmFk').then(response=>response.json());
-      	var origin=data.values.find(row2=>row2[4]===el.split('=')[0]);
+  var origin=data.values.find(row2=>row2[4]===el.split('=')[0]);
 	origin.push(el.split('=')[1]);
+  if(!dataA.some(row2=>JSON.stringify(row2)===JSON.stringify(origin))){
 	dataA.push(origin);
 	divI+='<sup><small>'+el.split('=')[0]+'</small></sup>'+'<p style="display:inline-block;">'+origin[0]+'('+langs.find(row=>row[0]===el.split('=')[1])[1]+')'+'</p>';
+  }
 	}
 	//외래어 아님
 	else{
@@ -173,7 +175,7 @@
 	divI+='</div>'
 	}
 	//뜻 추가
-	divI+='<p>';
+	divI+='<p style="margin-top:0;">';
 	//세부 분류 추가
 	if(row[3]!=dialect){
 	divI+='['+detail.find(row2=>row2[1]===row[3])[0]+'] ';
