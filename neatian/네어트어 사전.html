@@ -42,6 +42,7 @@
     var graphX=0;
     var dataS=[];
     var dataA=[];
+    var dataI=[]; //dataA 임시
     var match=[];
     var part=[];
     var detail=[];
@@ -136,7 +137,8 @@
 	var matchO=match.filter(row=>!matchE.includes(row)&&!matchS.includes(row)); //match other
 
 	document.getElementById('output').innerHTML='';
-	
+  dataI=[];
+  
 	matchE.forEach(row=>{addBox(row)});
 	matchS.forEach(row=>{addBox(row)});
 	matchO.forEach(row=>{addBox(row)});
@@ -161,11 +163,12 @@
 	var data=await fetch('https://sheets.googleapis.com/v4/spreadsheets/13LICoyhYt4Do9R24ktfoDpSDFxhHKpO-r44P3ROTJZQ/values/'+el.split('=')[1]+'!A:F?key=AIzaSyATLeHQh6kM0LWRJjLg8CmzoSdnntFrmFk').then(response=>response.json());
   var origin=data.values.find(row2=>row2[4]===el.split('=')[0]);
 	origin.push(el.split('=')[1]);
-  if(dataA.some(row2=>JSON.stringify(row2)===JSON.stringify(origin))){
+  if(dataI.some(row2=>JSON.stringify(row2)===JSON.stringify(origin))){
   console.log("!중복!");
   return;
   }
   dataA.push(origin);
+  dataI.push(origin);
 	divI+='<sup><small>'+el.split('=')[0]+'</small></sup>'+'<p style="display:inline-block;">'+origin[0]+'('+langs.find(row=>row[0]===el.split('=')[1])[1]+')'+'</p>';
 	}
 	//외래어 아님
