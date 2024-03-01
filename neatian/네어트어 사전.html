@@ -177,12 +177,12 @@
 	//외래어
 	if(el.includes('=')){
   var origin=dataA.find(row2=>row2[4]===el);
-	divI+='<sup><small>'+el.split('=')[0]+'</small></sup>'+'<p style="display:inline-block;">'+origin[0]+'('+langs.find(row=>row[0]===el.split('=')[1])[1]+')'+'</p>';
+	divI+='<sup><small>'+el.split('=')[0]+'</small></sup>'+'<p style="display:inline-block;padding-bottom:0;">'+origin[0]+'('+langs.find(row=>row[0]===el.split('=')[1])[1]+')'+'</p>';
 	}
 	//외래어 아님
 	else{
 	var origin=dataS.find(row2=>row2[4]===el);
-	divI+='<sup><small>'+el+'</small></sup>'+'<p style="display:inline-block;" onclick="document.getElementById(\'search\').innerHTML='+origin[0]+';search();'+'">'+origin[0]+'</p>';
+	divI+='<sup><small>'+el+'</small></sup>'+'<p style="display:inline-block;padding-bottom:0;" onclick="document.getElementById(\'search\').innerHTML='+origin[0]+';search();'+'">'+origin[0]+'</p>';
 	}
 	}
 	divI+='</div>'
@@ -208,6 +208,17 @@
 	document.getElementById('gnitaolf').style.visibility = 'visible';
 	}
 	limitX=1-limitX;
+    }
+    function limit(element){
+	var obj=element.textContent;
+	if(part.map(row=>{return row[0];}).includes(obj)){
+	part.find(row=>row[0]===obj)[1]=1-part.find(row=>row[0]===obj)[1];
+	}
+	else{
+	detail.find(row=>row[0]===obj)[2]=1-detail.find(row=>row[0]===obj)[2];
+	}
+	limitSetting();
+	search();
     }
     resetLang();
   /*const contain = document.getElementById('contain');
