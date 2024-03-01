@@ -105,7 +105,7 @@
       .then(dataout=>{
       imsi=dataout.values.find(row2=>row2[4]===el.split('=')[0]);
       imsi[4]=el;
-      dataA+=imsi;
+      dataA.push(imsi);
       })
       .catch(error=>console.error('Error:',error))
       }
