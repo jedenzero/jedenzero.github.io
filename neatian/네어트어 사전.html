@@ -120,12 +120,12 @@
     document.getElementById("floating").innerHTML+='<h2 style="text-align:center;">범위 제한</h2><h3>품사</h3>';
     part.forEach(row=>{
       var className=row[1]===0 ? 'limit' : 'timil';
-      document.getElementById("floating").innerHTML+='<div class="'+className+'" onclick="limit(this)">'+row[0]+'</div>';
+      document.getElementById("floating").innerHTML+='<div class="'+className+'" onclick="changeLimit(this)">'+row[0]+'</div>';
     });
     document.getElementById("floating").innerHTML+='<h3>세부 분류</h3>';
     detail.forEach(row=>{
       var className=row[2]===0 ? 'limit' : 'timil';
-      document.getElementById("floating").innerHTML+='<div class="'+className+'" onclick="limit(this)">'+row[0]+'</div>';
+      document.getElementById("floating").innerHTML+='<div class="'+className+'" onclick="changeLimit(this)">'+row[0]+'</div>';
     });
     document.getElementById("floating").innerHTML+='<div style="text-align:center;margin-top:10px;"><i class="fi fi-br-cross" onclick="visible()"></i></div>';
     }
@@ -209,7 +209,7 @@
 	}
 	limitX=1-limitX;
     }
-    function limit(element){
+    function changeLimit(element){
 	var obj=element.textContent;
 	if(part.map(row=>{return row[0];}).includes(obj)){
 	part.find(row=>row[0]===obj)[1]=1-part.find(row=>row[0]===obj)[1];
