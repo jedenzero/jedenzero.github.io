@@ -168,22 +168,24 @@
 	divI+='<h2 style="display:inline-block;margin-bottom:0;">'+row[0]+'</h2>' //단어 추가
 	//어원 추가
 	if(row[5]){
+	var i=0;
 	divI+='<div>'
 	for(let el of row[5].split(', ')){
 	//더하기 추가
-	if(row[5].split(', ').indexOf(el)!=0){
-	divI+='<p style="display:inline-block;margin-bottom:0;"> + </p>';
+	if(i!=0){
+	divI+='<p style="display:inline-block;margin:0;"> + </p>';
 	}
 	//외래어
 	if(el.includes('=')){
   var origin=dataA.find(row2=>row2[4]===el);
-	divI+='<sup><small>'+el.split('=')[0]+'</small></sup>'+'<p style="display:inline-block;margin-bottom:0;">'+origin[0]+'('+langs.find(row=>row[0]===el.split('=')[1])[1]+')'+'</p>';
+	divI+='<sup><small>'+el.split('=')[0]+'</small></sup>'+'<p style="display:inline-block;margin:0;">'+origin[0]+'('+langs.find(row=>row[0]===el.split('=')[1])[1]+')'+'</p>';
 	}
 	//외래어 아님
 	else{
 	var origin=dataS.find(row2=>row2[4]===el);
-	divI+='<sup><small>'+el+'</small></sup>'+'<p style="display:inline-block;margin-bottom:0;" onclick="document.getElementById(\'search\').innerHTML='+origin[0]+';search();'+'">'+origin[0]+'</p>';
+	divI+='<sup><small>'+el+'</small></sup>'+'<p style="display:inline-block;margin:0;" onclick="document.getElementById(\'search\').innerHTML='+origin[0]+';search();'+'">'+origin[0]+'</p>';
 	}
+	i+=1;
 	}
 	divI+='</div>'
 	}
