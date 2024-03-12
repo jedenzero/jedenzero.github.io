@@ -115,6 +115,21 @@ body{
       font-weight:300,700;
       background-color:#FAFAFA;
 }
+#modal{
+     position:fixed;
+     left:50%;
+     top:50%;
+     transform:translate(-50%,-50%);
+     width:280px;
+     height:380px;
+     padding-left:10px;
+     padding-right:10px;
+     padding-bottom:10px;
+     border-radius:10px;
+     background-color:#FAFAFACC;
+     backdrop-filter:blur(4px);
+     -webkit-backdrop-filter: blur(4px);
+}
 h2,h3{
      color:#1D2F52;
 }
