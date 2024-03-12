@@ -117,6 +117,7 @@ body{
 }
 #modal{
      position:fixed;
+     overflow:auto;
      left:50%;
      top:50%;
      transform:translate(-50%,-50%);
@@ -127,7 +128,7 @@ body{
      padding-top:10px;
      padding-bottom:10px;
      border-radius:10px;
-     background-color:#FAFAFACC;
+     background-color:#FAFAFA99;
      backdrop-filter:blur(4px);
      -webkit-backdrop-filter: blur(4px);
 }
