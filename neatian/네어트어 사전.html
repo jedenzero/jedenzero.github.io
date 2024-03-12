@@ -35,7 +35,8 @@
   </body>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
   <script>
-    var lang='ne'
+    var sheet='13LICoyhYt4Do9R24ktfoDpSDFxhHKpO-r44P3ROTJZQ';
+    var lang='ne';
     var langs=[];
     var dialect=null;
     var limitX=0;
@@ -49,14 +50,14 @@
     //데이터 다시 불러오기
     function resetLang(){
     Promise.all([
-    fetch('https://sheets.googleapis.com/v4/spreadsheets/13LICoyhYt4Do9R24ktfoDpSDFxhHKpO-r44P3ROTJZQ/values/'+lang+'!A:F?key=AIzaSyATLeHQh6kM0LWRJjLg8CmzoSdnntFrmFk')
+    fetch('https://sheets.googleapis.com/v4/spreadsheets/'+sheet+'/values/'+lang+'!A:F?key=AIzaSyATLeHQh6kM0LWRJjLg8CmzoSdnntFrmFk')
     .then(response=>response.json())
     .then(data=>{
 	dataS=data.values;
     })
     .catch(error=>console.error('Error:',error)),
     
-    fetch('https://sheets.googleapis.com/v4/spreadsheets/13LICoyhYt4Do9R24ktfoDpSDFxhHKpO-r44P3ROTJZQ/values/'+lang+'!G:G?key=AIzaSyATLeHQh6kM0LWRJjLg8CmzoSdnntFrmFk')
+    fetch('https://sheets.googleapis.com/v4/spreadsheets/'+sheet+'/values/'+lang+'!J:J?key=AIzaSyATLeHQh6kM0LWRJjLg8CmzoSdnntFrmFk')
     .then(response=>response.json())
     .then(data=>{
       part=data.values.map(row=>{
@@ -66,7 +67,7 @@
     })
     .catch(error=>console.error('Error:',error)),
     
-    fetch('https://sheets.googleapis.com/v4/spreadsheets/13LICoyhYt4Do9R24ktfoDpSDFxhHKpO-r44P3ROTJZQ/values/'+lang+'!H:I?key=AIzaSyATLeHQh6kM0LWRJjLg8CmzoSdnntFrmFk')
+    fetch('https://sheets.googleapis.com/v4/spreadsheets/'+sheet+'/values/'+lang+'!K:L?key=AIzaSyATLeHQh6kM0LWRJjLg8CmzoSdnntFrmFk')
     .then(response=>response.json())
     .then(data=>{
       detail=data.values.map(row=>{
@@ -82,7 +83,7 @@
       });
     })
     .catch(error=>console.error('Error:',error)),
-    fetch('https://sheets.googleapis.com/v4/spreadsheets/13LICoyhYt4Do9R24ktfoDpSDFxhHKpO-r44P3ROTJZQ/values/code!A:F?key=AIzaSyATLeHQh6kM0LWRJjLg8CmzoSdnntFrmFk')
+    fetch('https://sheets.googleapis.com/v4/spreadsheets/'+sheet+'/values/code!A:F?key=AIzaSyATLeHQh6kM0LWRJjLg8CmzoSdnntFrmFk')
     .then(response=>response.json())
     .then(data=>{
 	langs=data.values;
@@ -100,7 +101,7 @@
       for(let el of row[5].split(', ')){
       if(el.includes('=')){
       var imsi='';
-      fetch('https://sheets.googleapis.com/v4/spreadsheets/13LICoyhYt4Do9R24ktfoDpSDFxhHKpO-r44P3ROTJZQ/values/'+el.split('=')[1]+'!A:F?key=AIzaSyATLeHQh6kM0LWRJjLg8CmzoSdnntFrmFk')
+      fetch('https://sheets.googleapis.com/v4/spreadsheets/'+sheet+'/values/'+el.split('=')[1]+'!A:F?key=AIzaSyATLeHQh6kM0LWRJjLg8CmzoSdnntFrmFk')
       .then(response=>response.json())
       .then(dataout=>{
       imsi=dataout.values.find(row2=>row2[4]===el.split('=')[0]);
