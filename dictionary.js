@@ -207,7 +207,7 @@ var div=document.createElement('div');
 var divI=''; //div 임시
 var values={};
 modal.innerHTML='';
-divI+='<i class="fi fi-br-cross" onclick="document.getElementById(/'modal/').style=/'hidden/';"></i>'
+divI+='<div style="text-align:left;"><i class="fi fi-br-cross" onclick="document.getElementById(\'modal\').style.visibility=\'hidden\';" style="padding-left:10px;"></i></div>'
 dataS.forEach(row=>{
 	if(dataS.findIndex(row2=>row2===row)===0){
 		values['가장 긴 단어']=row[0];
