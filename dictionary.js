@@ -202,13 +202,30 @@ setting();
 search();
 }
 function more(){
+var modal=document.getElementById('modal');
 var div=document.createElement('div');
-var divI='';
+var divI=''; //div 임시
 var values={};
+modal.innerHTML='';
 dataS.forEach(row=>{
 	if(dataS.findIndex(row2=>row2===row)===0){
 		values['가장 긴 단어']=row[0];
+		values['가장 짧은 단어']=row[0];
+	}
+	if(row[0].length>values['가장 긴 단어'].length){
+		values['가장 긴 단어']=row[0];
+	}
+		if(row[0].length<values['가장 짧은 단어'].length){
+		values['가장 짧은 단어']=row[0];
 	}
 });
+divI+='<table>'
+values.entries.forEach(row=>{
+	divI+='<tr><td>'+row[0]+'</td><td>'+row[1]+'</td></tr>';
+});
+divI+='</table>'
+div.innerHTML=divI;
+modal.appendChild(div);
+modal.style.visibility='visible';
 }
 resetLang();
