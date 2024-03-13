@@ -8,7 +8,9 @@ var match=[];
 var part=[];
 var detail=[];
 var limit=[];
-//데이터 다시 불러오기
+var explain=[];
+var example=[];
+//데이터 (다시) 불러오기
 function resetLang(){
 Promise.all([
 fetch('https://sheets.googleapis.com/v4/spreadsheets/'+sheet+'/values/'+lang+'!A:F?key=AIzaSyATLeHQh6kM0LWRJjLg8CmzoSdnntFrmFk')
@@ -48,6 +50,20 @@ fetch('https://sheets.googleapis.com/v4/spreadsheets/'+sheet+'/values/code!A:F?k
 .then(response=>response.json())
 .then(data=>{
 langs=data.values;
+})
+.catch(error=>console.error('Error:',error)),
+
+fetch('https://sheets.googleapis.com/v4/spreadsheets/'+sheet+'/values/'+lang+'!G:G?key=AIzaSyATLeHQh6kM0LWRJjLg8CmzoSdnntFrmFk')
+.then(response=>response.json())
+.then(data=>{
+explain=data.values;
+})
+.catch(error=>console.error('Error:',error)),
+
+fetch('https://sheets.googleapis.com/v4/spreadsheets/'+sheet+'/values/'+lang+'!H:I?key=AIzaSyATLeHQh6kM0LWRJjLg8CmzoSdnntFrmFk')
+.then(response=>response.json())
+.then(data=>{
+example=data.values;
 })
 .catch(error=>console.error('Error:',error))
 ]).then(result=>{
@@ -184,5 +200,15 @@ detail.find(row=>row[0]===obj)[2]=1-detail.find(row=>row[0]===obj)[2];
 limitSetting();
 setting();
 search();
+}
+function more(){
+var div=document.createElement('div');
+var divI='';
+var values={};
+dataS.forEach(row=>{
+	if(dataS.findIndex(row2=>row2===row)===0){
+		values['가장 긴 단어']=row[0];
+	}
+});
 }
 resetLang();
