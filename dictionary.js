@@ -207,7 +207,7 @@ var div=document.createElement('div');
 var divI=''; //div 임시
 var values={};
 modal.innerHTML='';
-divI+='<div style="text-align:right;"><i class="fi fi-br-cross" onclick="document.getElementById(\'modal\').style.visibility=\'hidden\';" style="padding-left:10px;"></i></div>'
+divI+='<div style="text-align:right;padding-top:20px;"><i class="fi fi-br-cross" onclick="document.getElementById(\'modal\').style.visibility=\'hidden\';" style="padding-right:20px;"></i></div>'
 dataS.forEach(row=>{
 	if(dataS.findIndex(row2=>row2===row)===0){
 		values['가장 긴 단어']=row[0];
@@ -222,7 +222,7 @@ dataS.forEach(row=>{
 });
 divI+='<table style="margin:0 auto;">'
 Object.entries(values).forEach(row=>{
-	divI+='<tr><td style="padding:10px;"><b>'+row[0]+'</b></td><td style="padding:10px;">'+row[1]+'</td></tr>';
+	divI+='<tr><td style="padding:20px;"><b>'+row[0]+'</b></td><td style="padding:20px;">'+row[1]+'</td></tr>';
 });
 divI+='</table>'
 div.innerHTML=divI;
