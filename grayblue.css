@@ -127,8 +127,9 @@ body{
      padding-right:10px;
      padding-top:10px;
      padding-bottom:10px;
-     border-radius:10px;
-     background-color:#FAFAFA99;
+     border-radius:50px;
+     background-color:#FAFAFA66;
+     box-shadow: 5px 5px 10px 0px #EBF0FB66;
      backdrop-filter:blur(4px);
      -webkit-backdrop-filter: blur(4px);
 }
