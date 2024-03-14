@@ -231,4 +231,18 @@ div.innerHTML=divI;
 modal.appendChild(div);
 modal.style.visibility='visible';
 }
+function individualMore(){
+var modal=document.getElementById('modal');
+var div=document.createElement('div');
+var divI=''; //div 임시
+var values={};
+modal.innerHTML='';
+limitX=1;
+visible();
+divI+='<div style="text-align:right;padding-top:20px;"><i class="fi fi-br-cross" onclick="document.getElementById(\'modal\').style.visibility=\'hidden\';" style="padding-right:20px;"></i></div>'
+//divI
+div.innerHTML=divI;
+modal.appendChild(div);
+modal.style.visibility='visible';
+}
 resetLang();
