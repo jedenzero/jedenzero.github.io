@@ -146,6 +146,7 @@ divI+='<sup class="id">'+row[4]+'</sup>'; //id 추가
 divI += '<h2 style="display:inline-block;margin-bottom:0;" onclick="individualMore(this.getAttribute(\'data-info\'));" data-info=\'' + JSON.stringify(row) + '\'>' + row[0] + '</h2>'; //단어 추가
 var i=0;
 divI+='<div>'
+if(row[5]){
 for(let el of row[5].split(', ')){
 //더하기 추가
 if(i!=0){
@@ -162,6 +163,7 @@ var origin=dataS.find(row2=>row2[4]===el);
 divI+='<sup><small>'+el+'</small></sup>'+'<p style="display:inline-block;margin:0;" onclick="document.getElementById(\'search\').innerHTML='+origin[0]+';search();'+'">'+origin[0]+'</p>';
 }
 i+=1;
+}
 }
 divI+='</div>'
 //뜻 추가
