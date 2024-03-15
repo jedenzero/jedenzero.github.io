@@ -143,7 +143,7 @@ var div=document.createElement('div');
 var divI=''; //div 임시
 div.className='word';
 divI+='<sup class="id">'+row[4]+'</sup>'; //id 추가
-divI+='<h2 style="display:inline-block;margin-bottom:0;" onclick=\"individualMore('+row+');\">'+row[0]+'</h2>' //단어 추가
+divI+='<h2 style="display:inline-block;margin-bottom:0;" onclick=\"individualMore('+changeToString(row)+');\">'+row[0]+'</h2>' //단어 추가
 //어원 추가
 if(row[5]){
 var i=0;
@@ -231,7 +231,7 @@ div.innerHTML=divI;
 modal.appendChild(div);
 modal.style.visibility='visible';
 }
-function individualMore(element){
+function individualMore(row){
 var modal=document.getElementById('modal');
 var div=document.createElement('div');
 var divI=''; //div 임시
@@ -240,9 +240,26 @@ modal.innerHTML='';
 limitX=1;
 visible();
 divI+='<div style="text-align:right;padding-top:20px;"><i class="fi fi-br-cross" onclick="document.getElementById(\'modal\').style.visibility=\'hidden\';" style="margin-right:20px;"></i></div>'
-//divI
+divI+='<table style="margin:0 auto;">'+'<tr><td><b>품사</b></td><td>'+row[1].split(', ')[0]+'</td></tr>';
+if(row[1].includes(', ')){
+	row[1].split(', ').slice(1).forEach(el=>{
+		divI+='<tr><td><b>'+el.split(':')[0]+'</b></td><td>'+el.split(':')[1]+'</td></tr>';
+	});
+}
+divI+='</table>';
 div.innerHTML=divI;
 modal.appendChild(div);
 modal.style.visibility='visible';
+}
+function changeToString(arr) {
+    return '[' + arr.map(item => {
+        // 배열의 요소가 문자열일 때 이스케이프 처리 및 따옴표 추가
+        if (typeof item==='string') {
+            return '\"' + item.replace(/"/g, '\\"') + '\"';
+        }
+	else{
+            return item;
+        }
+    }).join() + ']';
 }
 resetLang();
