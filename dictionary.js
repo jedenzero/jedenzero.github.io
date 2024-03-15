@@ -56,7 +56,7 @@ langs=data.values;
 fetch('https://sheets.googleapis.com/v4/spreadsheets/'+sheet+'/values/'+lang+'!G:G?key=AIzaSyATLeHQh6kM0LWRJjLg8CmzoSdnntFrmFk')
 .then(response=>response.json())
 .then(data=>{
-explain=data.values.concat(new Array(dataS.length-data.values.length).fill(""));
+explain=data.values.concat(new Array(dataS.length-data.values.length).fill([]));
 })
 .catch(error=>console.error('Error:',error)),
 
