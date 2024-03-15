@@ -143,7 +143,7 @@ var div=document.createElement('div');
 var divI=''; //div 임시
 div.className='word';
 divI+='<sup class="id">'+row[4]+'</sup>'; //id 추가
-divI+='<h2 style="display:inline-block;margin-bottom:0;" onclick=\"individualMore(\''+row.stringify().replace(/'/g, "\\'")+'\');">'+row[0]+'</h2>' //단어 추가
+divI+='<h2 style="display:inline-block;margin-bottom:0;" onclick=\"individualMore(\''+JSON.stringify(row).replace(/'/g, "\\'")+'\');">'+row[0]+'</h2>' //단어 추가
 //어원 추가
 if(row[5]){
 var i=0;
