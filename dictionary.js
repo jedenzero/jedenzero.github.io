@@ -209,7 +209,7 @@ var values={};
 modal.innerHTML='';
 limitX=1;
 visible();
-divI+='<div style="text-align:right;padding-top:20px;"><i class="fi fi-br-cross" onclick="document.getElementById(\'modal\').style.visibility=\'hidden\';" style="padding-right:20px;"></i></div>'
+divI+='<div style="text-align:right;padding-top:20px;"><i class="fi fi-br-cross" onclick="document.getElementById(\'modal\').style.visibility=\'hidden\';" style="margin-right:20px;"></i></div>'
 dataS.forEach(row=>{
 	if(dataS.findIndex(row2=>row2===row)===0){
 		values['가장 긴 단어']=row[0];
@@ -239,7 +239,7 @@ var values={};
 modal.innerHTML='';
 limitX=1;
 visible();
-divI+='<div style="text-align:right;padding-top:20px;"><i class="fi fi-br-cross" onclick="document.getElementById(\'modal\').style.visibility=\'hidden\';" style="padding-right:20px;"></i></div>'
+divI+='<div style="text-align:right;padding-top:20px;"><i class="fi fi-br-cross" onclick="document.getElementById(\'modal\').style.visibility=\'hidden\';" style="margin-right:20px;"></i></div>'
 //divI
 div.innerHTML=divI;
 modal.appendChild(div);
