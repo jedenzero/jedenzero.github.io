@@ -164,7 +164,6 @@ divI+='<sup><small>'+el+'</small></sup>'+'<p style="display:inline-block;margin:
 i+=1;
 }
 divI+='</div>'
-}
 //뜻 추가
 divI+='<p style="margin-top:0;">';
 //세부 분류 추가
