@@ -69,7 +69,7 @@ example=data.values;
 ]).then(result=>{
 setting();
 limitSetting();
-explain.concat(new Array(dataS.length-explain.length).fill([]));
+explain=explain.concat(new Array(dataS.length-explain.length).fill([]));
 //인사
 document.getElementById('greet').innerHTML=langs.find(row=>row[0]===lang)[2];
 //단어수 표시
