@@ -252,7 +252,7 @@ if(row[1].includes(', ')){
 }
 divI+='</table>';
 if(explain[dataS.findIndex(row2=>JSON.stringify(row2)===JSON.stringify(row))]){
-	divI+='<p>'+explain[dataS.findIndex(row2=>JSON.stringify(row2)===JSON.stringify(row))]+'</p>';
+	divI+='<p>'+explain[0][dataS.findIndex(row2=>JSON.stringify(row2)===JSON.stringify(row))]+'</p>';
 }
 div.innerHTML=divI;
 modal.appendChild(div);
