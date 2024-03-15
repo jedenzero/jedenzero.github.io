@@ -244,7 +244,7 @@ modal.innerHTML='';
 limitX=1;
 visible();
 divI+='<div style="text-align:right;padding-top:20px;"><i class="fi fi-br-cross" onclick="document.getElementById(\'modal\').style.visibility=\'hidden\';" style="margin-right:20px;"></i></div>'
-divI+='<tr><td style="padding:20px;padding-top:10px;padding-bottom:10px;"><b>품사</b></td><td style="padding:20px;padding-top:10px;padding-bottom:10px;">'+row[1]+'</td></tr>';
+divI+='<table style="margin:0 auto;"><tr><td style="padding:20px;padding-top:10px;padding-bottom:10px;"><b>품사</b></td><td style="padding:20px;padding-top:10px;padding-bottom:10px;">'+row[1]+'</td></tr>';
 if(row[1].includes(', ')){
 	row[1].split(', ').slice(1).forEach(el=>{
 		divI+='<tr><td style="padding:20px;padding-top:10px;padding-bottom:10px;"><b>'+el.split(':')[0]+'</b></td><td style="padding:20px;padding-top:10px;padding-bottom:10px;">'+el.split(':')[1]+'</td></tr>';
