@@ -252,7 +252,7 @@ if(row[1].includes(', ')){
 	});
 }
 divI+='</table>';
-if(explain[0][dataS.findIndex(row2=>JSON.stringify(row2)===JSON.stringify(row))]){
+if(explain[0][dataS.findIndex(row2=>row2[4]===row[4]))]){
 	divI+='<p style="padding-left:20px;">'+explain[0][dataS.findIndex(row2=>JSON.stringify(row2)===JSON.stringify(row))]+'</p>';
 }
 div.innerHTML=divI;
