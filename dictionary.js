@@ -56,7 +56,7 @@ langs=data.values;
 fetch('https://sheets.googleapis.com/v4/spreadsheets/'+sheet+'/values/'+lang+'!G:G?key=AIzaSyATLeHQh6kM0LWRJjLg8CmzoSdnntFrmFk')
 .then(response=>response.json())
 .then(data=>{
-explain=data.values;
+explain=data.values.concat(new Array(dataS.length-data.values.length).fill(""));
 })
 .catch(error=>console.error('Error:',error)),
 
@@ -244,13 +244,16 @@ modal.innerHTML='';
 limitX=1;
 visible();
 divI+='<div style="text-align:right;padding-top:20px;"><i class="fi fi-br-cross" onclick="document.getElementById(\'modal\').style.visibility=\'hidden\';" style="margin-right:20px;"></i></div>'
-divI+='<table style="margin:0 auto;"><tr><td style="padding:20px;padding-top:10px;padding-bottom:10px;"><b>품사</b></td><td style="padding:20px;padding-top:10px;padding-bottom:10px;">'+row[1]+'</td></tr>';
+divI+='<table style="margin:0 auto;"><tr><td style="padding:20px;padding-top:10px;padding-bottom:10px;"><b>품사</b></td><td style="padding:20px;padding-top:10px;padding-bottom:10px;">'+row[1].split(', ')[0]+'</td></tr>';
 if(row[1].includes(', ')){
 	row[1].split(', ').slice(1).forEach(el=>{
 		divI+='<tr><td style="padding:20px;padding-top:10px;padding-bottom:10px;"><b>'+el.split(':')[0]+'</b></td><td style="padding:20px;padding-top:10px;padding-bottom:10px;">'+el.split(':')[1]+'</td></tr>';
 	});
 }
 divI+='</table>';
+if(explain[dataS.findIndex(row2=>JSON.stringify(row2)===JSON.stringify(row))]){
+	divI+='<p>'+explain[dataS.findIndex(row2=>JSON.stringify(row2)===JSON.stringify(row))]+'</p>';
+}
 div.innerHTML=divI;
 modal.appendChild(div);
 modal.style.visibility='visible';
