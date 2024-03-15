@@ -252,8 +252,8 @@ if(row[1].includes(', ')){
 	});
 }
 divI+='</table>';
-if(explain[dataS.findIndex(row2=>JSON.stringify(row2)===JSON.stringify(row))]){
-	divI+='<p style="padding:20px;">'+explain[0][dataS.findIndex(row2=>JSON.stringify(row2)===JSON.stringify(row))]+'</p>';
+if(explain[0][dataS.findIndex(row2=>JSON.stringify(row2)===JSON.stringify(row))]){
+	divI+='<p style="padding-left:20px;">'+explain[0][dataS.findIndex(row2=>JSON.stringify(row2)===JSON.stringify(row))]+'</p>';
 }
 div.innerHTML=divI;
 modal.appendChild(div);
