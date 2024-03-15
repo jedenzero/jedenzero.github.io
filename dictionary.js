@@ -56,7 +56,7 @@ langs=data.values;
 fetch('https://sheets.googleapis.com/v4/spreadsheets/'+sheet+'/values/'+lang+'!G:G?key=AIzaSyATLeHQh6kM0LWRJjLg8CmzoSdnntFrmFk')
 .then(response=>response.json())
 .then(data=>{
-explain=data.values.concat(new Array(dataS.length-data.values.length).fill([]));
+explain=data.values;
 })
 .catch(error=>console.error('Error:',error)),
 
@@ -69,6 +69,7 @@ example=data.values;
 ]).then(result=>{
 setting();
 limitSetting();
+explain.concat(new Array(dataS.length-explain.length).fill([]));
 //인사
 document.getElementById('greet').innerHTML=langs.find(row=>row[0]===lang)[2];
 //단어수 표시
