@@ -143,9 +143,7 @@ var div=document.createElement('div');
 var divI=''; //div 임시
 div.className='word';
 divI+='<sup class="id">'+row[4]+'</sup>'; //id 추가
-divI+='<h2 style="display:inline-block;margin-bottom:0;" onclick=\"individualMore(\''+JSON.stringify(row).replace(/'/g, "\\'")+'\');">'+row[0]+'</h2>' //단어 추가
-//어원 추가
-if(row[5]){
+divI += '<h2 style="display:inline-block;margin-bottom:0;" onclick="individualMore(this.getAttribute(\'data-info\'));" data-info=\'' + JSON.stringify(row) + '\'>' + row[0] + '</h2>'; //단어 추가
 var i=0;
 divI+='<div>'
 for(let el of row[5].split(', ')){
@@ -202,6 +200,8 @@ setting();
 search();
 }
 function more(){
+window.removeEventListener('click',modalClick);
+window.addEventListener('click',modalClick);
 var modal=document.getElementById('modal');
 var div=document.createElement('div');
 var divI=''; //div 임시
@@ -231,7 +231,10 @@ div.innerHTML=divI;
 modal.appendChild(div);
 modal.style.visibility='visible';
 }
-function individualMore(row){
+function individualMore(rowI){
+window.removeEventListener('click',modalClick);
+window.addEventListener('click',modalClick);
+var row=JSON.parse(rowI);
 var modal=document.getElementById('modal');
 var div=document.createElement('div');
 var divI=''; //div 임시
@@ -250,5 +253,11 @@ divI+='</table>';
 div.innerHTML=divI;
 modal.appendChild(div);
 modal.style.visibility='visible';
+}
+function modalClick(event){
+	if(!document.getElementById('modal').contains(event.target)){
+		document.getElementById('modal').style.visibility='hidden';
+		window.removeEventListener('click',modalClick);
+	}
 }
 resetLang();
