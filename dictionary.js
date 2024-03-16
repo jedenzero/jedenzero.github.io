@@ -124,7 +124,7 @@ detail.filter(row=>row[2]===1).forEach(row=>{
 function search(){
 var input=document.getElementById('search').value;
 match=dataS.filter(row=>row[0].includes(input.toLowerCase())||row[2].includes(input));
-match=match.filter(row=>!limit.includes(row[1])&&!limit.includes(row[3]));
+match=match.filter(row=>!limit.includes(row[1].split(', ')[0])&&!limit.includes(row[3]));
 document.getElementById('search_amount').innerHTML='검색 결과 : '+match.length+'개';
 
 var matchE=match.filter(row=>row[0]===input||row[2].split(', ').includes(input)); //match equal or exact
