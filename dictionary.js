@@ -252,8 +252,8 @@ if(row[1].includes(', ')){
 	});
 }
 divI+='</table>';
-if(explain[row[4]][0]){
-	divI+='<p style="padding-left:20px;">'+explain[row[4]][0]+'</p>';
+if(explain[dataS.findIndex(row2=>row2[4]===row[4])][0]){
+	divI+='<p style="padding-left:20px;">'+explain[dataS.findIndex(row2=>row2[4]===row[4])][0]+'</p>';
 }
 div.innerHTML=divI;
 modal.appendChild(div);
