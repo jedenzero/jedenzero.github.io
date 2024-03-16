@@ -245,7 +245,7 @@ modal.innerHTML='';
 limitX=1;
 visible();
 divI+='<div style="text-align:right;padding-top:20px;"><i class="fi fi-br-cross" onclick="document.getElementById(\'modal\').style.visibility=\'hidden\';" style="margin-right:20px;"></i></div>'
-divI+='<div style="text-align:center;">'+'<sup>'+row[4]+'</sup>'+'<h3>'+row[0]+'</h3>'+'</div>';
+divI+='<div style="text-align:center;">'+'<sup>'+row[4]+'</sup>'+'<h3 style="display:inline-block;">'+row[0]+'</h3>'+'</div>';
 divI+='<table style="margin:0 auto;"><tr><td style="padding:20px;padding-top:10px;padding-bottom:10px;"><b>품사</b></td><td style="padding:20px;padding-top:10px;padding-bottom:10px;">'+row[1].split(', ')[0]+'</td></tr>';
 if(row[1].includes(', ')){
 	row[1].split(', ').slice(1).forEach(el=>{
