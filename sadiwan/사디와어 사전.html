@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+	  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	  <title>사디와어</title>
+    <link rel="stylesheet" href="../grayblue.css">
+  </head>
+  <body>
+    <div class="header" style="display:flex;justify-content:space-between;">
+      <a style="margin-left:20px;color:#1D2F52;font-size:15px;" href="https://jedenzero.github.io/sadiwan/">SADIWA-YAKASH</a>
+      <div id="stat" style="display:flex;justify-content:center;align-items:center;width:30px;height:30px;border-radius:15px;margin-right:20px;margin-top:10px;color:#F5F5F5;background-color:#1D2F52;font-size:10px;" onclick="event.stopPropagation();more();">
+        <i class="fi fi-br-stats"></i>
+      </div>
+    </div>
+    <div>
+	<h1 id="greet" style="text-align:center;"></h1>
+	<p id="total_amount" style="text-align:center;padding-left:50px;padding-right:50px;">
+    </div>
+    <div class="contain" id="contain" style="width:260px;">
+    <div class="underline" id="underline">
+      <input type="text" id="search" onkeyup="search()">
+    </div>
+    <p id="search_amount"></p>
+    <div id="output"></div>
+    <div style="height:100px;"></div>
+    </div>
+    <div id="floating" style="visibility:hidden;">
+    </div>
+    <div id="gnitaolf" onclick="visible()">
+      <i class="fi fi-br-bars-filter"></i>
+    </div>
+    <div id="modal" style="visibility:hidden;"></div>
+    <svg id="svg" style="display:none;width:100vw;"></svg>
+  </body>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+  <script>
+    var sheet='1CYEq6moTupGFx0elsuqDzET62X-ueZheF0JcxDwCWj8';
+    var lang='sa';
+  </script>
+  <script src="../dictionary.js"></script>
+</html>
