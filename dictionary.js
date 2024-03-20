@@ -256,6 +256,32 @@ divI+='</table>';
 if(explain[dataS.findIndex(row2=>row2[4]===row[4])][0]){
 	divI+='<p style="padding-left:20px;">'+explain[dataS.findIndex(row2=>row2[4]===row[4])][0]+'</p>';
 }
+example.forEach(row2=>{
+	var ids=row2[1].split(', ');
+	if(ids.includes(row[4])){
+		var words=row2[0].split('/')[0].split((/=| /));
+		var delimits=[];
+		divI+='<div>';
+		row2[0].split('/')[0].split('').forEach(letter=>{
+			if(letter===' '||letter==='='){
+				delimits.push(letter);
+			}
+		});
+		for(let i=0;i<words.length;i++){
+			if(ids[i]===row[4]){
+				divI+='<b>'+words[i]+'</b>';
+			}
+			else{
+				divI+=words[i];
+			}
+			if(delimits.length-1>=i&&delimits[i]===' '){
+				divI+=delimits[i];
+			}
+		}
+		divI+='<br>'+row2[0].split('/')[1];
+		divI+='</div>';
+	}
+});
 div.innerHTML=divI;
 modal.appendChild(div);
 modal.style.visibility='visible';
