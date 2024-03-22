@@ -261,7 +261,7 @@ example.forEach(row2=>{
 	if(ids.includes(row[4])){
 		var words=row2[0].split('/')[0].split((/=| /));
 		var delimits=[];
-		divI+='<div style="margin-left:20px;">';
+		divI+='<div style="margin-left:20px;margin-bottom:10px;border-left:2px solid #1D2F52;padding-left:10px;">';
 		row2[0].split('/')[0].split('').forEach(letter=>{
 			if(letter===' '||letter==='='){
 				delimits.push(letter);
