@@ -83,7 +83,7 @@ setting();
 limitSetting();
 explain=explain.concat(new Array(dataS.length-explain.length).fill([]));
 //셀렉트 박스 생성
-if(getElementById('select')){
+if(document.getElementById('select')){
 var selectbox=document.createElement('select');
 var selectI='';
 selectbox.onchange=function(){
