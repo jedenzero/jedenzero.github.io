@@ -10,7 +10,7 @@ var detail=[];
 var limit=[];
 var explain=[];
 var example=[];
-if(getElementById('header')){
+if(document.getElementById('header')){
 fetch("/dictionary-header.html")
 .then(response=>{
 	return response.text()
