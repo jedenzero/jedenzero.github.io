@@ -82,6 +82,25 @@ example=data.values;
 setting();
 limitSetting();
 explain=explain.concat(new Array(dataS.length-explain.length).fill([]));
+//셀렉트 박스 생성
+if(getElementById('select')){
+var selectbox=document.createElement('select');
+var selectI='';
+selectbox.onchange=function(){
+	lang=this.value;
+	window.location.href='./?lang='+lang;
+};
+selectbox.style.width='100px';
+selectbox.style.marginBottom='10px';
+selectbox.style.border='none';
+selectbox.style.outline='none';
+selectI+='<option disabled="" selected="">언어</option>';
+langs.forEach(row=>{
+	selectI+='<option value=\"'+row[0]+'\">'+row[1]+'</option>';
+});
+selectbox.innerHTML=selectI;
+document.getElementById('select').appendChild(selectbox);
+}
 //인사
 document.getElementById('greet').innerHTML=langs.find(row=>row[0]===lang)[2];
 //단어수 표시
