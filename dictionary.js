@@ -303,4 +303,3 @@ function modalClick(event){
 		window.removeEventListener('click',modalClick);
 	}
 }
-resetLang();
