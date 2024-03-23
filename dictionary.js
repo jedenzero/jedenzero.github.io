@@ -220,7 +220,7 @@ dataS.forEach(row=>{
 	if(row[0].length>values['가장 긴 단어'].length){
 		values['가장 긴 단어']=row[0];
 	}
-		if(row[0].length<values['가장 짧은 단어'].length){
+	if(row[0].length<values['가장 짧은 단어'].length){
 		values['가장 짧은 단어']=row[0];
 	}
 });
@@ -256,6 +256,7 @@ divI+='</table>';
 if(explain[dataS.findIndex(row2=>row2[4]===row[4])][0]){
 	divI+='<p style="padding-left:20px;">'+explain[dataS.findIndex(row2=>row2[4]===row[4])][0]+'</p>';
 }
+if(example){
 example.forEach(row2=>{
 	var ids=row2[1].split(', ');
 	if(ids.includes(row[4])){
@@ -282,6 +283,7 @@ example.forEach(row2=>{
 		divI+='</div>';
 	}
 });
+}
 div.innerHTML=divI;
 modal.appendChild(div);
 modal.style.visibility='visible';
