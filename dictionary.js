@@ -11,7 +11,7 @@ var limit=[];
 var explain=[];
 var example=[];
 if(getElementById('header')){
-fetch("../dictionary-header.html")
+fetch("/dictionary-header.html")
 .then(response=>{
 	return response.text()
 })
