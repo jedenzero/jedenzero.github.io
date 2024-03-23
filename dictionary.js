@@ -170,7 +170,7 @@ divI+='<sup><small>'+el.split('=')[0]+'</small></sup>'+'<p style="display:inline
 //외래어 아님
 else{
 var origin=dataS.find(row2=>row2[4]===el);
-divI+='<sup><small>'+el+'</small></sup>'+'<p style="display:inline-block;margin:0;" onclick="document.getElementById(\'search\').value=\"'+origin[0]+'\";search();\">'+origin[0]+'</p>';
+divI+='<sup><small>'+el+'</small></sup>'+'<p style="display:inline-block;margin:0;" onclick="document.getElementById(\'search\').value=\''+origin[0]+'\';search();\">'+origin[0]+'</p>';
 }
 i+=1;
 }
