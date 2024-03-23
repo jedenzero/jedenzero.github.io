@@ -303,3 +303,7 @@ function modalClick(event){
 		window.removeEventListener('click',modalClick);
 	}
 }
+function changeLang(){
+	lang=new URL(window.location.href).searchParams.get('lang');
+	resetLang();
+}
