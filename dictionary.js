@@ -11,6 +11,9 @@ var limit=[];
 var explain=[];
 var example=[];
 if(document.getElementById('header')){
+document.getElementById('header').className="header"
+document.getElementById('header').style.display='flex';
+document.getElementById('header').style.justifyContent='space-between';
 fetch("/dictionary-header.html")
 .then(response=>{
 	return response.text()
