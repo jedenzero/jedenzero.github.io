@@ -87,8 +87,7 @@ if(document.getElementById('select')){
 var selectbox=document.createElement('select');
 var selectI='';
 selectbox.onchange=function(){
-	lang=this.value;
-	window.location.href='./?lang='+lang;
+	window.location.href='./?lang='+this.value;
 };
 selectbox.style.width='100px';
 selectbox.style.marginBottom='10px';
