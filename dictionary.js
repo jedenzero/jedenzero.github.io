@@ -93,9 +93,11 @@ selectbox.style.width='100px';
 selectbox.style.marginBottom='10px';
 selectbox.style.border='none';
 selectbox.style.outline='none';
-selectI+='<option disabled="" selected="">언어</option>';
+selectI+='<option disabled="" selected="">'+langs.find(row=>row[0]===lang)[1]+'</option>';
 langs.forEach(row=>{
+	if(row[0]!=lang){
 	selectI+='<option value=\"'+row[0]+'\">'+row[1]+'</option>';
+	}
 });
 selectbox.innerHTML=selectI;
 document.getElementById('select').appendChild(selectbox);
