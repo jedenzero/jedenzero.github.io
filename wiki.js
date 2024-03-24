@@ -1,16 +1,29 @@
-/**
+var docs=[];
 fetch("https://drive.google.com/drive/folders/"+drive)
 .then(response=>{
 	return response.text();
 })
 .then(data=>{
-	console.log(data.split('modelChunk = ')[1].split('"s":\"')[1].split('\"')[0]);
+	while(data.includes('KL4NAf')){
+		docs.push(data.split('KL4NAf')[1].split('&gt;')[1].split('&lt;')[0]);
+		data.replace('KL4NAf', '인식-완료');
+	}
 });
-fetch("https://docs.google.com/document/d/1hZ2Uanz7YHneXI4MxaXWYTAVrF4EuO1HMEUZlC79ZE8/edit")
+if(new URL(window.location.href).searchParams.get('id')){
+fetch("https://docs.google.com/document/d/"+new URL(window.location.href).searchParams.get('id')+"/edit")
 .then(response=>{
 	return response.text();
 })
 .then(data=>{
-	console.log(data.split('modelChunk = ')[1].split('"s":\"')[1].split('\"')[0]);
+	document.getElementById('contain').innerHTML=data.split('modelChunk = ')[1].split('"s":\"')[1].split('\"')[0]);
 });
-**/
+}
+else{
+fetch("https://docs.google.com/document/d/"+front+"/edit")
+.then(response=>{
+	return response.text();
+})
+.then(data=>{
+	document.getElementById('contain').innerHTML=data.split('modelChunk = ')[1].split('"s":\"')[1].split('\"')[0]);
+});
+}
