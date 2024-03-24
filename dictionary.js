@@ -20,6 +20,8 @@ fetch("/dictionary-header.html")
 })
 .then(data=>{
 	document.getElementById('header').innerHTML=data;
+	document.getElementsByTagName('a')[0].href='/'+site;
+	document.getElementsByTagName('a')[0].innerHTML=siteName;
 });
 }
 //데이터 (다시) 불러오기
