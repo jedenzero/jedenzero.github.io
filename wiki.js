@@ -15,7 +15,9 @@ fetch("https://docs.google.com/document/d/"+doc+"/edit")
 	return response.text();
 })
 .then(data=>{
-	document.getElementById('contain').innerHTML+=data.split('modelChunk = ')[1].split('"s":\"')[1].split('\"')[0];
+	document.getElementById('contain').innerHTML+=data.split('modelChunk = ')[1].split('"s":\"')[1].split('\"')[0].replace(/\\u([\d\w]{4})/gi, function (match, grp) {
+    		return String.fromCharCode(parseInt(grp, 16));
+  	});
 	if(!new URL(window.location.href).searchParams.get('id')||new URL(window.location.href).searchParams.get('id')===front){
 	document.getElementById('contain').innerHTML+='<h3>문서 목록</h3>';
 	docs.forEach(row=>{
