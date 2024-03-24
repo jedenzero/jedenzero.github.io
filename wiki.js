@@ -19,7 +19,7 @@ fetch("https://docs.google.com/document/d/"+doc+"/edit")
 	if(!new URL(window.location.href).searchParams.get('id')||new URL(window.location.href).searchParams.get('id')===front){
 	document.getElementById('contain').innerHTML+='<h3>문서 목록</h3>';
 	docs.forEach(row=>{
-		document.getElementById('contain').innerHTML+='<a href=\"?id='+row[1]+'\">'+row[0]+'</a>';
+		document.getElementById('contain').innerHTML+='<p><a href=\"?id='+row[1]+'\">'+row[0]+'</a></p>';
 	});
 	}
 });
