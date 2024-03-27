@@ -149,6 +149,10 @@ a{
 table{
      color:#374052;
      border-spacing:0;
+     margin:0 auto;
+}
+td{
+     padding:10px;
 }
 blockquote{
      margin-left:10px;
