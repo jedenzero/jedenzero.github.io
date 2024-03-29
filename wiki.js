@@ -25,7 +25,6 @@ fetch("https://docs.google.com/document/d/e/"+docs.find(row=>row[0]===doc)[1]+"/
 		}
 		i+=el.replace(/<span[^>]*>/gi,'\n').replace(/<\/span>/gi,'');
 	};
-    console.log(marked.parse(i))
     imsi.innerHTML=marked.parse(i).replace(/>/gi,'&gt;').replace(/</gi,'&lt;');
     document.getElementById('contain').innerHTML='<h2 style="text-align:center;">'+doc+'</h2>'+imsi.textContent;
 	if(!new URL(window.location.href).searchParams.get('doc')||new URL(window.location.href).searchParams.get('doc')===front){
