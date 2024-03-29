@@ -25,7 +25,7 @@ fetch("https://docs.google.com/document/d/e/"+docs.find(row=>row[0]===doc)[1]+"/
 		}
 		i+='&lt;p&gt;'+el.substring(el.indexOf('>')+1)+'&lt;/p&gt;';
 	};
-	imsi.innerHTML=marked(i);
+	imsi.innerHTML=marked.parse(i);
     	document.getElementById('contain').innerHTML='<h2 style="text-align:center;">'+doc+'</h2>'+imsi.textContent;
 	if(!new URL(window.location.href).searchParams.get('doc')||new URL(window.location.href).searchParams.get('doc')===front){
 	document.getElementById('contain').innerHTML+='<h3>문서 목록</h3>';
