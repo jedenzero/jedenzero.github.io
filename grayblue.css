@@ -117,7 +117,7 @@ body{
      border-radius:25px;
      background-color:#F0F0F0;
      color:#282828;
-     border:2px solid #00B450;
+     border:1px solid #00B450;
 }
 .incorrect-boxing{
      box-sizing:border-box;
@@ -129,7 +129,7 @@ body{
      border-radius:25px;
      background-color:#F0F0F0;
      color:#282828;
-     border:2px solid #FF0050;
+     border:1px solid #FF0050;
 }
 #floating{
      position:fixed;
